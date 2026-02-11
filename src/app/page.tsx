@@ -1,8 +1,18 @@
-export default function Home() {
+import classes from "./page.module.scss";
+
+const Home = () => {
   return (
-    <main>
-      <h1>Welcome to Next.js</h1>
-      <p>Your production-ready Next.js application is ready.</p>
-    </main>
+    <div className={classes.home}>
+      <section className={classes.home__hero}>
+        <div className={classes.home__heroContent}>
+          <h1 className={classes.home__title}>Chronicle</h1>
+          <p className={classes.home__subtitle}>
+            A simple, focused place for your notes and thoughts.
+          </p>
+        </div>
+      </section>
+    </div>
   );
-}
+};
+
+export default Home;

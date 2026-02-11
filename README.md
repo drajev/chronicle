@@ -1,10 +1,10 @@
-# Same Day
+# Chronicle
 
 A news exploration app centered around time, not feeds. Discover what happened on this exact day historically, explore current events, and see how topics evolve across time.
 
 ## 🎯 Core Concept
 
-Same Day answers three fundamental questions:
+Chronicle answers three fundamental questions:
 - **What happened on this exact day (historically)?** - Explore headlines from the same date across different years
 - **What's happening right now?** - Stay grounded in the present with recent news
 - **How does a topic evolve across time?** - Track how stories develop and change over time

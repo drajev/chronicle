@@ -1,90 +1,113 @@
-@use '@/assets/scss/variables.scss' as *;
-@use '@/assets/scss/mixins.scss' as *;
-@use '@/assets/scss/utils.scss' as *;
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+@use "@/assets/scss/utils.scss" as *;
 
 // --------------------------------------------------------------
-// -------------------- CSS Variables (Light Theme) ------------
+// Theme: 4 base colors per mode. All semantic vars derive from these.
 // --------------------------------------------------------------
-:root {
-  // Typography
-  --text-primary: #{$black100};
-  --text-secondary: #{$black40};
-  --text-tertiary: #{$black10};
-  --text-inverted: #{$white100};
-  --text-disabled: #{$white20};
+
+// Default (light) - applied to :root for SSR and no-JS
+:root,
+[data-theme="light"] {
+  // Palette (4 bases)
+  --theme-bg: #{$theme-light-bg};
+  --theme-surface: #{$theme-light-surface};
+  --theme-muted: #{$theme-light-muted};
+  --theme-accent: #{$theme-light-accent};
+  --theme-accent-hover: #{$theme-light-accent-hover};
+  --theme-accent-muted: #{$theme-light-accent-muted};
+
+  // Gradients
+  --gradient-subtle: #{$theme-light-gradient-subtle};
+  --gradient-accent: #{$theme-light-gradient-accent};
+
+  // Shadows
+  --shadow-sm: #{$theme-light-shadow-sm};
+  --shadow-md: #{$theme-light-shadow-md};
+  --shadow-lg: #{$theme-light-shadow-lg};
+  --shadow-xl: #{$theme-light-shadow-xl};
+
+  // Semantic (derived from palette)
+  --text-primary: #2c2825;
+  --text-secondary: #5c5650;
+  --text-tertiary: #8a837b;
+  --text-inverted: #{$theme-light-surface};
+  --text-disabled: #b0a89f;
   --text-success: #{$success};
   --text-error: #{$error};
   --text-warning: #{$warning};
   --text-info: #{$info};
 
-  // Surfaces
-  --surface-primary: #{$white100};
-  --surface-secondary: #{$white80};
-  --surface-tertiary: #{$white60};
-  --surface-inverted: #{$black100};
+  --surface-primary: #{$theme-light-surface};
+  --surface-secondary: #{$theme-light-bg};
+  --surface-tertiary: #e8e5e0;
+  --surface-inverted: #{$theme-light-muted};
 
-  // Borders
-  --border-primary: #{$black100};
-  --border-secondary: #{$white50};
-  --border-tertiary: #{$white30};
+  --border-primary: #{$theme-light-muted};
+  --border-secondary: #d4cfc8;
+  --border-tertiary: #e0dcd6;
 
-  // Shadows
-  --shadow-sm: #{$shadow-sm};
-  --shadow-md: #{$shadow-md};
-  --shadow-lg: #{$shadow-lg};
-  --shadow-xl: #{$shadow-xl};
+  --focus-ring: #{$theme-light-accent};
+  --error: #{$error};
+  --error-hover: #{$error-dark};
+  --error-muted: #{rgba(253, 43, 94, 0.12)};
+}
 
-  // Focus
-  --focus-ring: #{$primary};
+// Dark theme
+[data-theme="dark"] {
+  --theme-bg: #{$theme-dark-bg};
+  --theme-surface: #{$theme-dark-surface};
+  --theme-muted: #{$theme-dark-muted};
+  --theme-accent: #{$theme-dark-accent};
+  --theme-accent-hover: #{$theme-dark-accent-hover};
+  --theme-accent-muted: #{$theme-dark-accent-muted};
 
-  // Spacing (for CSS calc if needed)
+  --gradient-subtle: #{$theme-dark-gradient-subtle};
+  --gradient-accent: #{$theme-dark-gradient-accent};
+
+  --shadow-sm: #{$theme-dark-shadow-sm};
+  --shadow-md: #{$theme-dark-shadow-md};
+  --shadow-lg: #{$theme-dark-shadow-lg};
+  --shadow-xl: #{$theme-dark-shadow-xl};
+
+  --text-primary: #e6edf3;
+  --text-secondary: #{$theme-dark-muted};
+  --text-tertiary: #6e7681;
+  --text-inverted: #{$theme-dark-bg};
+  --text-disabled: #484f58;
+  --text-success: #{$success};
+  --text-error: #{$error};
+  --text-warning: #{$warning};
+  --text-info: #{$info};
+
+  --surface-primary: #{$theme-dark-surface};
+  --surface-secondary: #{$theme-dark-bg};
+  --surface-tertiary: #252b33;
+  --surface-inverted: #e6edf3;
+
+  --border-primary: #{$theme-dark-border-primary};
+  --border-secondary: #{$theme-dark-border-secondary};
+  --border-tertiary: #{$theme-dark-border-tertiary};
+
+  --focus-ring: #{$theme-dark-accent};
+  --error: #{$error};
+  --error-hover: #{$error-dark};
+  --error-muted: #{rgba(253, 43, 94, 0.12)};
+}
+
+// Design tokens (theme-agnostic)
+:root {
   --spacing-xs: #{$spacing-xs};
   --spacing-s: #{$spacing-s};
   --spacing-m: #{$spacing-m};
   --spacing-l: #{$spacing-l};
   --spacing-xl: #{$spacing-xl};
+  --radius-component: #{$radius-component};
+  --focus-ring-offset: #{$focus-ring-offset};
 }
 
 // --------------------------------------------------------------
-// -------------------- CSS Variables (Dark Theme) -------------
-// --------------------------------------------------------------
-@media (prefers-color-scheme: dark) {
-  :root {
-    // Typography
-    --text-primary: #{$white100};
-    --text-secondary: #{$white40};
-    --text-tertiary: #{$white10};
-    --text-inverted: #{$black100};
-    --text-disabled: #{$black20};
-    --text-success: #{$success};
-    --text-error: #{$error};
-    --text-warning: #{$warning};
-    --text-info: #{$info};
-
-    // Surfaces
-    --surface-primary: #{$black100};
-    --surface-secondary: #{$black80};
-    --surface-tertiary: #{$black60};
-    --surface-inverted: #{$white100};
-
-    // Borders
-    --border-primary: #{$white100};
-    --border-secondary: #{$black50};
-    --border-tertiary: #{$black30};
-
-    // Shadows
-    --shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.05);
-    --shadow-md: 0 4px 6px rgba(255, 255, 255, 0.1);
-    --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.1);
-    --shadow-xl: 0 20px 25px rgba(255, 255, 255, 0.15);
-
-    // Focus
-    --focus-ring: #{$primary-light};
-  }
-}
-
-// --------------------------------------------------------------
-// -------------------- Base Styles ----------------------------
+// Base Styles
 // --------------------------------------------------------------
 html,
 body {
@@ -101,47 +124,28 @@ body {
   transition: background-color $transition-short, color $transition-short;
 }
 
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-// Typography defaults
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-h1 {
-  @include h1;
-}
-
-h2 {
-  @include h2;
-}
-
-h3 {
-  @include h3;
-}
-
-h4 {
-  @include h4;
-}
-
-h5 {
-  @include h5;
-}
-
-h6 {
-  @include h6;
-}
+h1 { @include h1; }
+h2 { @include h2; }
+h3 { @include h3; }
+h4 { @include h4; }
+h5 { @include h5; }
+h6 { @include h6; }
 
 p {
   margin: 0;
@@ -174,16 +178,8 @@ button {
   }
 }
 
-ul,
-ol {
+ul, ol {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-// Dark mode color scheme
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

@@ -1,0 +1,227 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $spacing-2xl $spacing-l $spacing-3xl;
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-xl $spacing-m $spacing-2xl;
+  }
+}
+
+.header {
+  margin-bottom: $spacing-2xl;
+}
+
+.title {
+  @include h1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-m;
+  color: var(--text-primary);
+  margin-bottom: $spacing-s;
+}
+
+.titleIcon {
+  width: $icon-xl;
+  height: $icon-xl;
+  color: var(--focus-ring);
+  flex-shrink: 0;
+}
+
+.subtitle {
+  @include body1;
+  color: var(--text-secondary);
+}
+
+.section {
+  margin-bottom: $spacing-2xl;
+  padding-bottom: $spacing-2xl;
+  border-bottom: 1px solid var(--border-secondary);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.sectionTitle {
+  @include h2;
+  display: flex;
+  align-items: center;
+  gap: $spacing-s;
+  color: var(--text-primary);
+  margin-bottom: $spacing-m;
+}
+
+.sectionIcon {
+  width: $icon-md;
+  height: $icon-md;
+  color: var(--text-secondary);
+}
+
+.sectionDesc {
+  @include body2;
+  color: var(--text-secondary);
+  margin-bottom: $spacing-l;
+}
+
+.paletteRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+  margin-bottom: $spacing-xl;
+}
+
+.paletteSwatch {
+  flex: 1;
+  min-width: 100px;
+  height: 80px;
+  border-radius: $radius-component;
+  border: 1px solid var(--border-secondary);
+  display: flex;
+  align-items: flex-end;
+  padding: $spacing-s;
+
+  &[data-swatch="bg"] {
+    background-color: var(--theme-bg);
+  }
+  &[data-swatch="surface"] {
+    background-color: var(--theme-surface);
+  }
+  &[data-swatch="muted"] {
+    background-color: var(--theme-muted);
+    .paletteLabel {
+      color: var(--text-inverted);
+    }
+  }
+  &[data-swatch="accent"] {
+    background-color: var(--theme-accent);
+    .paletteLabel {
+      color: var(--text-inverted);
+    }
+  }
+}
+
+.paletteLabel {
+  @include body3;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.gradientPreview {
+  height: 48px;
+  border-radius: $radius-component;
+  background: var(--gradient-subtle);
+  margin-bottom: $spacing-s;
+  border: 1px solid var(--border-secondary);
+}
+
+.gradientLabel {
+  @include body3;
+  color: var(--text-tertiary);
+}
+
+.block {
+  margin-bottom: $spacing-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockTitle {
+  @include subtitle2;
+  color: var(--text-secondary);
+  margin-bottom: $spacing-m;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+  align-items: center;
+}
+
+.inputRow {
+  max-width: 360px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: $spacing-l;
+  margin-bottom: $spacing-xl;
+}
+
+.cardsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+}
+
+.cardTitle {
+  @include h5;
+  color: var(--text-primary);
+  margin-bottom: $spacing-s;
+}
+
+.cardText {
+  @include body2;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.cardPaddingDemo {
+  @include body3;
+  color: var(--text-tertiary);
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xl;
+  align-items: center;
+}
+
+.linkWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+
+  svg {
+    width: $icon-sm;
+    height: $icon-sm;
+  }
+}
+
+.iconsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: $spacing-m;
+}
+
+.iconCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-s;
+  padding: $spacing-m;
+  border: 1px solid var(--border-secondary);
+  border-radius: $radius-component;
+  background-color: var(--surface-secondary);
+}
+
+.iconSvg {
+  width: $icon-md;
+  height: $icon-md;
+  color: var(--text-primary);
+}
+
+.iconName {
+  @include body3;
+  color: var(--text-tertiary);
+  text-align: center;
+  word-break: break-all;
+}

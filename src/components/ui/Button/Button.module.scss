@@ -1,0 +1,132 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-s;
+  padding: $spacing-m $spacing-l;
+  border-radius: $radius-component;
+  font-family: $font-primary;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-short;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  &:focus-visible {
+    @include focus-visible;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.primary {
+  background-color: var(--theme-accent);
+  color: var(--text-inverted);
+  border-color: var(--theme-accent);
+
+  &:hover:not(:disabled) {
+    background-color: var(--theme-accent-hover);
+    border-color: var(--theme-accent-hover);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--theme-accent-hover);
+    transform: scale(0.98);
+  }
+}
+
+.secondary {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-secondary);
+
+  &:hover:not(:disabled) {
+    background-color: var(--surface-tertiary);
+    border-color: var(--border-primary);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--surface-tertiary);
+    transform: scale(0.98);
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--text-primary);
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--surface-secondary);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--surface-tertiary);
+  }
+}
+
+.danger {
+  background-color: var(--error);
+  color: var(--text-inverted);
+  border-color: var(--error);
+
+  &:hover:not(:disabled) {
+    background-color: var(--error-hover);
+    border-color: var(--error-hover);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--error-hover);
+    transform: scale(0.98);
+  }
+}
+
+.sm {
+  padding: $spacing-s $spacing-m;
+  font-size: $body3;
+  gap: $spacing-xs;
+}
+
+.md {
+  padding: $spacing-m $spacing-l;
+  font-size: $body2;
+  gap: $spacing-s;
+}
+
+.lg {
+  padding: $spacing-l $spacing-xl;
+  font-size: $body1;
+  gap: $spacing-m;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.iconOnly {
+  padding: $spacing-m;
+  aspect-ratio: 1;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

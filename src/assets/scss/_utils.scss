@@ -1,0 +1,125 @@
+@use './mixins.scss' as *;
+
+// Typography utility classes
+.u-h1 {
+  @include h1;
+}
+
+.u-h2 {
+  @include h2;
+}
+
+.u-h3 {
+  @include h3;
+}
+
+.u-h4 {
+  @include h4;
+}
+
+.u-h5 {
+  @include h5;
+}
+
+.u-h6 {
+  @include h6;
+}
+
+.u-body-1 {
+  @include body1;
+}
+
+.u-body-2 {
+  @include body2;
+}
+
+.u-body-3 {
+  @include body3;
+}
+
+.u-subtitle-1 {
+  @include subtitle1;
+}
+
+.u-subtitle-2 {
+  @include subtitle2;
+}
+
+.u-subtitle-3 {
+  @include subtitle3;
+}
+
+// Text color utilities
+.u-text-primary {
+  color: var(--text-primary);
+}
+
+.u-text-secondary {
+  color: var(--text-secondary);
+}
+
+.u-text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.u-text-inverted {
+  color: var(--text-inverted);
+}
+
+.u-text-disabled {
+  color: var(--text-disabled);
+}
+
+// Layout utilities
+.u-full-width {
+  width: 100%;
+}
+
+.u-full-height {
+  height: 100%;
+}
+
+// Text utilities
+.u-truncate {
+  @include truncate;
+}
+
+.u-line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.u-line-clamp-3 {
+  @include line-clamp(3);
+}
+
+// Skeleton loading state
+.u-skeleton {
+  background-color: var(--surface-secondary);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 100px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      var(--surface-primary) 50%,
+      transparent 100%
+    );
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}

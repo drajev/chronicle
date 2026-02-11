@@ -1,0 +1,189 @@
+@use '@/assets/scss/variables.scss' as *;
+@use '@/assets/scss/mixins.scss' as *;
+@use '@/assets/scss/utils.scss' as *;
+
+// --------------------------------------------------------------
+// -------------------- CSS Variables (Light Theme) ------------
+// --------------------------------------------------------------
+:root {
+  // Typography
+  --text-primary: #{$black100};
+  --text-secondary: #{$black40};
+  --text-tertiary: #{$black10};
+  --text-inverted: #{$white100};
+  --text-disabled: #{$white20};
+  --text-success: #{$success};
+  --text-error: #{$error};
+  --text-warning: #{$warning};
+  --text-info: #{$info};
+
+  // Surfaces
+  --surface-primary: #{$white100};
+  --surface-secondary: #{$white80};
+  --surface-tertiary: #{$white60};
+  --surface-inverted: #{$black100};
+
+  // Borders
+  --border-primary: #{$black100};
+  --border-secondary: #{$white50};
+  --border-tertiary: #{$white30};
+
+  // Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+
+  // Focus
+  --focus-ring: #{$primary};
+
+  // Spacing (for CSS calc if needed)
+  --spacing-xs: #{$spacing-xs};
+  --spacing-s: #{$spacing-s};
+  --spacing-m: #{$spacing-m};
+  --spacing-l: #{$spacing-l};
+  --spacing-xl: #{$spacing-xl};
+}
+
+// --------------------------------------------------------------
+// -------------------- CSS Variables (Dark Theme) -------------
+// --------------------------------------------------------------
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Typography
+    --text-primary: #{$white100};
+    --text-secondary: #{$white40};
+    --text-tertiary: #{$white10};
+    --text-inverted: #{$black100};
+    --text-disabled: #{$black20};
+    --text-success: #{$success};
+    --text-error: #{$error};
+    --text-warning: #{$warning};
+    --text-info: #{$info};
+
+    // Surfaces
+    --surface-primary: #{$black100};
+    --surface-secondary: #{$black80};
+    --surface-tertiary: #{$black60};
+    --surface-inverted: #{$white100};
+
+    // Borders
+    --border-primary: #{$white100};
+    --border-secondary: #{$black50};
+    --border-tertiary: #{$black30};
+
+    // Shadows
+    --shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.05);
+    --shadow-md: 0 4px 6px rgba(255, 255, 255, 0.1);
+    --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.1);
+    --shadow-xl: 0 20px 25px rgba(255, 255, 255, 0.15);
+
+    // Focus
+    --focus-ring: #{$primary-light};
+  }
+}
+
+// --------------------------------------------------------------
+// -------------------- Base Styles ----------------------------
+// --------------------------------------------------------------
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--surface-primary);
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color $transition-short, color $transition-short;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+// Typography defaults
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+h1 {
+  @include h1;
+}
+
+h2 {
+  @include h2;
+}
+
+h3 {
+  @include h3;
+}
+
+h4 {
+  @include h4;
+}
+
+h5 {
+  @include h5;
+}
+
+h6 {
+  @include h6;
+}
+
+p {
+  margin: 0;
+  @include body1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color $transition-short;
+
+  &:hover {
+    color: var(--text-secondary);
+  }
+
+  &:focus-visible {
+    @include focus-visible;
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+
+  &:focus-visible {
+    @include focus-visible;
+  }
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Dark mode color scheme
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

@@ -30,8 +30,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env*.local
+.env
+!.env.local.example
 
 # vercel
 .vercel
@@ -39,3 +41,34 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# os
+Thumbs.db
+
+# lock files (using bun)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# biome
+.biome/
+
+# documentation (keep only README.md)
+REFERENCE_ANALYSIS.md
+PHASE1_COMPLETE.md
+GITHUB_READY.md
+
+# cursor
+.cursorrules
+.cursorignore
+
+# vitest
+vitest.config.ts.timestamp-*
+.vitest/

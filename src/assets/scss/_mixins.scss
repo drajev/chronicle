@@ -1,0 +1,105 @@
+@use './variables.scss' as *;
+
+// Typography mixins with responsive scaling
+@mixin h1 {
+  font-size: $h1;
+  line-height: $line-height-tight;
+  font-weight: 600;
+
+  @media (max-width: $screen-md-max) {
+    font-size: $h4;
+  }
+}
+
+@mixin h2 {
+  font-size: $h2;
+  line-height: $line-height-normal;
+  font-weight: 600;
+
+  @media (max-width: $screen-md-max) {
+    font-size: $h5;
+  }
+}
+
+@mixin h3 {
+  font-size: $h3;
+  line-height: $line-height-tight;
+  font-weight: 600;
+
+  @media (max-width: $screen-md-max) {
+    font-size: $h6;
+  }
+}
+
+@mixin h4 {
+  font-size: $h4;
+  line-height: $line-height-normal;
+  font-weight: 600;
+}
+
+@mixin h5 {
+  font-size: $h5;
+  line-height: $line-height-normal;
+  font-weight: 500;
+}
+
+@mixin h6 {
+  font-size: $h6;
+  line-height: $line-height-normal;
+  font-weight: 500;
+}
+
+@mixin body1 {
+  font-size: $body1;
+  line-height: $line-height-relaxed;
+  font-weight: 400;
+}
+
+@mixin body2 {
+  font-size: $body2;
+  line-height: $line-height-relaxed;
+  font-weight: 400;
+}
+
+@mixin body3 {
+  font-size: $body3;
+  line-height: $line-height-relaxed;
+  font-weight: 400;
+}
+
+@mixin subtitle1 {
+  font-size: $body1;
+  line-height: $line-height-normal;
+  font-weight: 600;
+}
+
+@mixin subtitle2 {
+  font-size: $body2;
+  line-height: $line-height-normal;
+  font-weight: 600;
+}
+
+@mixin subtitle3 {
+  font-size: $body3;
+  line-height: $line-height-normal;
+  font-weight: 600;
+}
+
+// Utility mixins
+@mixin focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

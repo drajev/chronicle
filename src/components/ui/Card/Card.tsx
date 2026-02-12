@@ -42,4 +42,6 @@ const Card = ({
   );
 };
 
+Card.displayName = "Card";
+
 export default Card;

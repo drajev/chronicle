@@ -1,25 +1,25 @@
 "use client";
 
 import { Button } from "@/components/ui";
-import classes from "./not-found.module.scss";
+import { ROUTES } from "@/lib/constants";
 
 const NotFound = () => {
   return (
-    <div className={classes.notFound}>
-      <div className={classes.notFound__content}>
-        <h1 className={classes.notFound__title}>404</h1>
-        <h2 className={classes.notFound__subtitle}>Page Not Found</h2>
-        <p className={classes.notFound__message}>
+    <main className="app-not-found" aria-labelledby="not-found-title">
+      <div className="app-not-found__content">
+        <h1 id="not-found-title" className="app-not-found__title">404</h1>
+        <h2 className="app-not-found__subtitle">Page Not Found</h2>
+        <p className="app-not-found__message">
           The page you are looking for doesn't exist or has been moved.
         </p>
-        <div className={classes.notFound__actions}>
-          <Button href="/">Go Home</Button>
+        <div className="app-not-found__actions">
+          <Button href={ROUTES.home}>Go Home</Button>
           <Button variant="secondary" onClick={() => window.history.back()}>
             Go Back
           </Button>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

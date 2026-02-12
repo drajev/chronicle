@@ -1,18 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "/api",
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "/api";
 
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || "/api",
+    baseUrl: API_BASE,
     prepareHeaders: (headers) => {
       headers.set("Accept", "application/json");
       return headers;
@@ -21,5 +14,3 @@ export const baseApi = createApi({
   tagTypes: [],
   endpoints: () => ({}),
 });
-
-export { axiosInstance };

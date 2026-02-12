@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useState,
+  type ReactNode,
 } from "react";
 import {
   THEME_STORAGE_KEY,
@@ -14,10 +15,10 @@ import {
 
 export type Theme = "light" | "dark";
 
-const setThemeCookie = (theme: Theme) => {
+function setThemeCookie(theme: Theme): void {
   if (typeof document === "undefined") return;
   document.cookie = `${THEME_STORAGE_KEY}=${theme};path=/;max-age=${THEME_COOKIE_MAX_AGE};SameSite=Lax`;
-};
+}
 
 type ThemeContextValue = {
   theme: Theme;
@@ -31,7 +32,7 @@ export const ThemeProvider = ({
   children,
   initialTheme,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   initialTheme: Theme;
 }) => {
   const [theme, setThemeState] = useState<Theme>(initialTheme);

@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import classes from "./page.module.scss";
+
+export const metadata: Metadata = {
+  title: "Chronicle",
+  description: "A simple, focused place for your notes and thoughts.",
+};
 
 const Home = () => {
   return (

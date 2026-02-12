@@ -1,0 +1,55 @@
+@use "@/assets/scss/variables.scss" as *;
+
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+.viewport {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar {
+  display: flex;
+  touch-action: none;
+  user-select: none;
+  transition: background-color $transition-short;
+  border-color: transparent;
+  padding: 1px;
+
+  &.vertical {
+    height: 100%;
+    width: 6px;
+    border-left-width: 1px;
+    border-left-style: solid;
+
+    &:hover {
+      width: 10px;
+    }
+  }
+
+  &.horizontal {
+    height: 6px;
+    border-top-width: 1px;
+    border-top-style: solid;
+
+    &:hover {
+      height: 10px;
+    }
+  }
+}
+
+.thumb {
+  position: relative;
+  border-radius: $radius-full;
+  flex: 1;
+  background-color: var(--border-secondary);
+  transition: background-color $transition-short;
+
+  .scrollbar:hover & {
+    background-color: var(--text-tertiary);
+  }
+}

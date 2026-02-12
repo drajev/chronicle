@@ -3,6 +3,7 @@
 import { Component } from "react";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui";
+import { ROUTES } from "@/lib/constants";
 import classes from "./ErrorBoundary.module.scss";
 
 interface ErrorBoundaryProps {
@@ -49,7 +50,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       }
 
       return (
-        <div className={classes.root}>
+        <div className={classes.root} role="alert">
           <div className={classes.content}>
             <h1 className={classes.title}>Something went wrong</h1>
             <p className={classes.message}>
@@ -58,7 +59,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             </p>
             <div className={classes.actions}>
               <Button onClick={this.handleReset}>Try Again</Button>
-              <Button variant="secondary" href="/">
+              <Button variant="secondary" href={ROUTES.home}>
                 Go Home
               </Button>
             </div>

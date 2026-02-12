@@ -1,0 +1,23 @@
+@use "@/assets/scss/variables.scss" as *;
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.track {
+  width: 100%;
+  position: relative;
+}
+
+.sizer {
+  width: 100%;
+  position: relative;
+}
+
+.virtualRow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}

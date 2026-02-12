@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui";
-import classes from "./error.module.scss";
+import { ROUTES } from "@/lib/constants";
 
 const ErrorPage = ({
   error,
@@ -10,21 +10,19 @@ const ErrorPage = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
-  // TODO: send error to reporting service (e.g. in useEffect)
-
   return (
-    <div className={classes.error}>
-      <div className={classes.error__content}>
-        <h1 className={classes.error__title}>Something went wrong!</h1>
-        <p className={classes.error__message}>
+    <div className="app-error" role="alert">
+      <div className="app-error__content">
+        <h1 className="app-error__title">Something went wrong!</h1>
+        <p className="app-error__message">
           {error.message || "An unexpected error occurred. Please try again."}
         </p>
         {error.digest && (
-          <p className={classes.error__digest}>Error ID: {error.digest}</p>
+          <p className="app-error__digest">Error ID: {error.digest}</p>
         )}
-        <div className={classes.error__actions}>
+        <div className="app-error__actions">
           <Button onClick={reset}>Try Again</Button>
-          <Button variant="secondary" href="/">
+          <Button variant="secondary" href={ROUTES.home}>
             Go Home
           </Button>
         </div>
@@ -32,5 +30,7 @@ const ErrorPage = ({
     </div>
   );
 };
+
+ErrorPage.displayName = "ErrorPage";
 
 export default ErrorPage;

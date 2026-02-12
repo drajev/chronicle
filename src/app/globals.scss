@@ -183,3 +183,91 @@ ul, ol {
   padding: 0;
   list-style: none;
 }
+
+// App error page (global to avoid preload warning for route-specific CSS chunk)
+.app-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-xl;
+  background-color: var(--surface-primary);
+}
+
+.app-error__content {
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-l;
+}
+
+.app-error__title {
+  @include h2;
+  color: var(--text-primary);
+}
+
+.app-error__message {
+  @include body1;
+  color: var(--text-secondary);
+}
+
+.app-error__digest {
+  @include body3;
+  color: var(--text-tertiary);
+  font-family: $font-mono;
+}
+
+.app-error__actions {
+  display: flex;
+  gap: $spacing-m;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+// App not-found page (global to avoid preload warning for route-specific CSS chunk)
+.app-not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-xl;
+  background-color: var(--surface-primary);
+}
+
+.app-not-found__content {
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-l;
+}
+
+.app-not-found__title {
+  @include h1;
+  color: var(--text-primary);
+  font-size: 120px;
+  line-height: 1;
+  font-weight: 700;
+
+  @media (max-width: $screen-md-max) {
+    font-size: 80px;
+  }
+}
+
+.app-not-found__subtitle {
+  @include h2;
+  color: var(--text-primary);
+}
+
+.app-not-found__message {
+  @include body1;
+  color: var(--text-secondary);
+}
+
+.app-not-found__actions {
+  display: flex;
+  gap: $spacing-m;
+  justify-content: center;
+  flex-wrap: wrap;
+}

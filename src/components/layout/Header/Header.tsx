@@ -5,33 +5,28 @@ import Link from "next/link";
 import { HiOutlineBars3, HiOutlineXMark, HiOutlineSun, HiOutlineMoon, HiOutlineBookOpen } from "react-icons/hi2";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui";
-import classes from "./Header.module.scss";
+import { NAV_HEADER_LINKS, ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import classes from "./Header.module.scss";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-    { href: "/styleguide", label: "Styleguide" },
-  ];
-
   return (
     <header className={classes.root}>
       <div className={classes.container}>
         <div className={classes.left}>
-          <Link href="/" className={classes.logo}>
+          <Link href={ROUTES.home} className={classes.logo}>
             <HiOutlineBookOpen className={classes.logoIcon} aria-hidden />
           </Link>
         </div>
 
         <nav
           className={cn(classes.nav, isMobileMenuOpen && classes.navOpen)}
+          aria-label="Main"
         >
-          {navLinks.map((link) => (
+          {NAV_HEADER_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}

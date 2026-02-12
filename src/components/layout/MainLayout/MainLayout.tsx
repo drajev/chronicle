@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import classes from "./MainLayout.module.scss";
+
+const MAIN_CONTENT_ID = "main-content";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -10,8 +13,13 @@ interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className={classes.root}>
+      <Link href={`#${MAIN_CONTENT_ID}`} className={classes.skipLink}>
+        Skip to main content
+      </Link>
       <Header />
-      <main className={classes.main}>{children}</main>
+      <main id={MAIN_CONTENT_ID} className={classes.main} tabIndex={-1}>
+        {children}
+      </main>
       <Footer />
     </div>
   );

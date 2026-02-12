@@ -1,10 +1,4 @@
-import {
-  type Ref,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type Ref, useCallback, useEffect, useRef, useState } from "react";
 import { useMergedRefs } from "./useMergedRefs";
 
 export interface UseIntersectionObserverOptions<T extends HTMLElement = HTMLElement> {
@@ -25,7 +19,13 @@ export interface UseIntersectionObserverOptions<T extends HTMLElement = HTMLElem
 export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
   options: UseIntersectionObserverOptions<T> = {}
 ): { ref: Ref<T | null>; isIntersecting: boolean } {
-  const { threshold = 0, rootMargin = "0px", root = null, triggerOnce = false, ref: refProp } = options;
+  const {
+    threshold = 0,
+    rootMargin = "0px",
+    root = null,
+    triggerOnce = false,
+    ref: refProp,
+  } = options;
 
   const [isIntersecting, setIsIntersecting] = useState(false);
   const hasIntersectedRef = useRef(false);

@@ -1,0 +1,9 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.empty {
+  text-align: center;
+  padding: $spacing-3xl $spacing-l;
+  @include body2;
+  color: var(--text-secondary);
+}

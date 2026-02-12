@@ -1,9 +1,9 @@
 "use client";
 
-import { Component } from "react";
-import type { ReactNode } from "react";
 import { Button } from "@/components/ui";
 import { ROUTES } from "@/lib/constants";
+import { Component } from "react";
+import type { ReactNode } from "react";
 import classes from "./ErrorBoundary.module.scss";
 
 interface ErrorBoundaryProps {
@@ -54,8 +54,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           <div className={classes.content}>
             <h1 className={classes.title}>Something went wrong</h1>
             <p className={classes.message}>
-              {this.state.error?.message ||
-                "An unexpected error occurred. Please try again."}
+              {this.state.error?.message || "An unexpected error occurred. Please try again."}
             </p>
             <div className={classes.actions}>
               <Button onClick={this.handleReset}>Try Again</Button>

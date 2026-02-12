@@ -85,10 +85,7 @@ const VirtualScrollInner = <T,>({
   return (
     <ScrollArea ref={scrollAreaRef} className={cn(classes.container, className)}>
       <div className={cn(classes.track, contentClassName)}>
-        <div
-          className={classes.sizer}
-          style={{ height: `${virtualizer.getTotalSize()}px` }}
-        >
+        <div className={classes.sizer} style={{ height: `${virtualizer.getTotalSize()}px` }}>
           {virtualizer.getVirtualItems().map((virtualRow) => (
             <div
               key={virtualRow.key}

@@ -1,9 +1,10 @@
+import { LatestNewsCarousel } from "@/components/news/LatestNewsCarousel";
 import type { Metadata } from "next";
 import classes from "./page.module.scss";
 
 export const metadata: Metadata = {
   title: "Chronicle",
-  description: "A simple, focused place for your notes and thoughts.",
+  description: "News from the Guardian",
 };
 
 const Home = () => {
@@ -13,8 +14,9 @@ const Home = () => {
         <div className={classes.home__heroContent}>
           <h1 className={classes.home__title}>Chronicle</h1>
           <p className={classes.home__subtitle}>
-            A simple, focused place for your notes and thoughts.
+            News from the Guardian
           </p>
+          <LatestNewsCarousel className={classes.home__carousel} />
         </div>
       </section>
     </div>

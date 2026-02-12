@@ -1,10 +1,10 @@
 "use client";
 
+import { type Theme, ThemeProvider } from "@/contexts/ThemeContext";
+import { type AppStore, makeStore } from "@/lib/store/store";
 import type { ReactNode } from "react";
 import { useRef } from "react";
 import { Provider } from "react-redux";
-import { ThemeProvider, type Theme } from "@/contexts/ThemeContext";
-import { makeStore, type AppStore } from "@/lib/store/store";
 
 /**
  * Single app-level providers wrapper. Composes Redux and Theme.
@@ -24,9 +24,7 @@ const AppProviders = ({
 
   return (
     <Provider store={storeRef.current}>
-      <ThemeProvider initialTheme={initialTheme ?? "light"}>
-        {children}
-      </ThemeProvider>
+      <ThemeProvider initialTheme={initialTheme ?? "light"}>{children}</ThemeProvider>
     </Provider>
   );
 };

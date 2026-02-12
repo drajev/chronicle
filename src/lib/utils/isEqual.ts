@@ -1,7 +1,4 @@
-export const isEqual = <T, K>(
-  obj: T | T[],
-  objToCompare: K | K[],
-): boolean => {
+export const isEqual = <T, K>(obj: T | T[], objToCompare: K | K[]): boolean => {
   if (obj instanceof Date && objToCompare instanceof Date) {
     return obj.getTime() === objToCompare.getTime();
   }

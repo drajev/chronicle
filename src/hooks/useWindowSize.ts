@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { BREAKPOINTS } from "@/lib/constants/breakpoints";
+import { useEffect, useState } from "react";
 
 export interface WindowSize {
   width: number;

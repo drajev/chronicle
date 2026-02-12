@@ -169,7 +169,7 @@ const LazyVirtualScrollDemo = () => {
       )}
     </div>
   );
-}
+};
 
 const Styleguide = () => {
   const [inputValue, setInputValue] = useState("");
@@ -398,9 +398,9 @@ const Styleguide = () => {
       <section className={classes.section}>
         <h2 className={classes.sectionTitle}>Carousel</h2>
         <p className={classes.sectionDesc}>
-          Infinite horizontal carousel. Prev/next buttons below; loops last → first and first → last.
-          Lazy-loaded with <code>useIntersectionObserver</code> and <code>Skeleton</code> until in
-          view.
+          Infinite horizontal carousel. Prev/next buttons below; loops last → first and first →
+          last. Lazy-loaded with <code>useIntersectionObserver</code> and <code>Skeleton</code>{" "}
+          until in view.
         </p>
         <div className={classes.block}>
           <LazyCarouselDemo />
@@ -416,9 +416,24 @@ const Styleguide = () => {
         <div className={classes.block}>
           <h3 className={classes.blockTitle}>Variants</h3>
           <div className={classes.skeletonDemo}>
-            <Skeleton variant="text" typography="body2" fullWidth className={classes.skeletonLine} />
-            <Skeleton variant="text" typography="body2" width="80%" className={classes.skeletonLine} />
-            <Skeleton variant="text" typography="body2" width="60%" className={classes.skeletonLine} />
+            <Skeleton
+              variant="text"
+              typography="body2"
+              fullWidth
+              className={classes.skeletonLine}
+            />
+            <Skeleton
+              variant="text"
+              typography="body2"
+              width="80%"
+              className={classes.skeletonLine}
+            />
+            <Skeleton
+              variant="text"
+              typography="body2"
+              width="60%"
+              className={classes.skeletonLine}
+            />
           </div>
           <div className={classes.skeletonComponentVariants}>
             <h4 className={classes.skeletonVariantSubtitle}>Component-matching</h4>

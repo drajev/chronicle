@@ -1,0 +1,162 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.section {
+  padding: $spacing-2xl $spacing-l;
+  background-color: var(--surface-primary);
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-xl $spacing-m;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-l;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionTitle {
+  @include h2;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.viewAll {
+  @include body2;
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Invisible placeholder so loading header matches loaded state (prevents layout shift)
+.skeletonViewAllPlaceholder {
+  @include body2;
+  visibility: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.carouselWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.empty {
+  @include body2;
+  color: var(--text-secondary);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.link {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Skeleton: same layout and dimensions as Carousel (itemWidth 280, gap 16, card height)
+$skeleton-slot-width: 280px;
+$skeleton-slot-height: 160px;
+$skeleton-gap: 16px;
+
+.carouselSkeleton {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.carouselSkeletonViewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: $skeleton-slot-height;
+}
+
+.carouselSkeletonRow {
+  display: flex;
+  flex-shrink: 0;
+  gap: $skeleton-gap;
+  flex-wrap: nowrap;
+  height: $skeleton-slot-height;
+}
+
+.carouselSkeletonSlot {
+  flex: 0 0 $skeleton-slot-width;
+  width: $skeleton-slot-width;
+  height: $skeleton-slot-height;
+}
+
+.skeletonCard {
+  width: 100%;
+  height: 100%;
+  min-height: $skeleton-slot-height;
+}
+
+.carouselSkeletonControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-m;
+  margin-top: $spacing-m;
+}
+
+.carouselCard {
+  height: 100%;
+  min-height: 160px;
+}
+
+.cardLink {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.cardTitle {
+  @include h5;
+  color: var(--text-primary);
+  margin: 0 0 $spacing-xs;
+  line-height: $line-height-tight;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardMeta {
+  @include body3;
+  color: var(--text-tertiary);
+  margin-bottom: $spacing-s;
+}
+
+.cardSnippet {
+  @include body3;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: $line-height-relaxed;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

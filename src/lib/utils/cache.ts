@@ -10,7 +10,7 @@ const createCacheKey = (key: string): string => {
 export const storageSetItem = async (
   cacheName: string,
   key: string,
-  value: unknown,
+  value: unknown
 ): Promise<void> => {
   const cache = await caches.open(cacheName);
   const serializedValue = JSON.stringify(value, stringifyBigIntValues);
@@ -20,10 +20,7 @@ export const storageSetItem = async (
   await cache.put(new Request(createCacheKey(key)), response);
 };
 
-export const storageGetItem = async <T>(
-  cacheName: string,
-  key: string,
-): Promise<T | null> => {
+export const storageGetItem = async <T>(cacheName: string, key: string): Promise<T | null> => {
   const cache = await caches.open(cacheName);
   const response = await cache.match(new Request(createCacheKey(key)));
   if (!response) return null;
@@ -31,10 +28,7 @@ export const storageGetItem = async <T>(
   return JSON.parse(serializedValue) as T;
 };
 
-export const storageRemoveItem = async (
-  cacheName: string,
-  key: string,
-): Promise<boolean> => {
+export const storageRemoveItem = async (cacheName: string, key: string): Promise<boolean> => {
   const cache = await caches.open(cacheName);
   return cache.delete(new Request(createCacheKey(key)));
 };
@@ -50,7 +44,7 @@ export const storageClear = async (cacheName: string): Promise<void> => {
 export const storageClearByPrefixOrSuffix = async (
   cacheName: string,
   str: string,
-  isPrefix = true,
+  isPrefix = true
 ): Promise<void> => {
   const cache = await caches.open(cacheName);
   const keys = await cache.keys();
@@ -63,18 +57,13 @@ export const storageClearByPrefixOrSuffix = async (
   }
 };
 
-export const storageExists = async (
-  cacheName: string,
-  key: string,
-): Promise<boolean> => {
+export const storageExists = async (cacheName: string, key: string): Promise<boolean> => {
   const cache = await caches.open(cacheName);
   const response = await cache.match(new Request(createCacheKey(key)));
   return response !== undefined;
 };
 
-export const storageGetAllKeys = async (
-  cacheName: string,
-): Promise<string[]> => {
+export const storageGetAllKeys = async (cacheName: string): Promise<string[]> => {
   const cache = await caches.open(cacheName);
   const keys = await cache.keys();
   return keys.map((request) => {
@@ -85,7 +74,7 @@ export const storageGetAllKeys = async (
 
 export const storageCalculateSize = async (
   cacheName: string,
-  cacheKey?: string,
+  cacheKey?: string
 ): Promise<number> => {
   const cache = await caches.open(cacheName);
 

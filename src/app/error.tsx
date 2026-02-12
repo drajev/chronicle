@@ -17,9 +17,7 @@ const ErrorPage = ({
         <p className="app-error__message">
           {error.message || "An unexpected error occurred. Please try again."}
         </p>
-        {error.digest && (
-          <p className="app-error__digest">Error ID: {error.digest}</p>
-        )}
+        {error.digest && <p className="app-error__digest">Error ID: {error.digest}</p>}
         <div className="app-error__actions">
           <Button onClick={reset}>Try Again</Button>
           <Button variant="secondary" href={ROUTES.home}>

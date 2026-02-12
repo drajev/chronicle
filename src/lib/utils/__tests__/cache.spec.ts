@@ -1,10 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import {
-  storageClear,
-  storageGetItem,
-  storageRemoveItem,
-  storageSetItem,
-} from "../cache";
+import { storageClear, storageGetItem, storageRemoveItem, storageSetItem } from "../cache";
 
 const mockCache = {
   put: vi.fn(),
@@ -33,10 +28,7 @@ describe("Cache API Utils", () => {
       const value = { test: "data" };
       await storageSetItem("testCache", "testKey", value);
       expect(mockCaches.open).toHaveBeenCalledWith("testCache");
-      expect(mockCache.put).toHaveBeenCalledWith(
-        expect.any(Request),
-        expect.any(Response),
-      );
+      expect(mockCache.put).toHaveBeenCalledWith(expect.any(Request), expect.any(Response));
       const request = mockCache.put.mock.calls[0][0] as Request;
       expect(request.url).toBe("https://cache.internal/testKey");
     });
@@ -45,9 +37,7 @@ describe("Cache API Utils", () => {
   describe("storageGetItem", () => {
     it("should retrieve stored value", async () => {
       const mockValue = { test: "data" };
-      mockCache.match.mockResolvedValue(
-        new Response(JSON.stringify(mockValue)),
-      );
+      mockCache.match.mockResolvedValue(new Response(JSON.stringify(mockValue)));
       const result = await storageGetItem("testCache", "testKey");
       expect(result).toEqual(mockValue);
       expect(mockCache.match).toHaveBeenCalledWith(expect.any(Request));

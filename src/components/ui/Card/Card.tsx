@@ -1,5 +1,5 @@
-import classes from "./Card.module.scss";
 import { cn } from "@/lib/utils";
+import classes from "./Card.module.scss";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   ref?: React.Ref<HTMLDivElement>;
@@ -32,7 +32,7 @@ const Card = ({
     classes.root,
     variantClassMap[variant],
     paddingClassMap[padding],
-    className,
+    className
   );
 
   return (

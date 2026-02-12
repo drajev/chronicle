@@ -18,10 +18,7 @@
   // Watch for extension attributes being added and remove them immediately
   const observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
-      if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "cz-shortcut-listen"
-      ) {
+      if (mutation.type === "attributes" && mutation.attributeName === "cz-shortcut-listen") {
         const target = mutation.target;
         if (target === document.body || target === document.documentElement) {
           target.removeAttribute("cz-shortcut-listen");

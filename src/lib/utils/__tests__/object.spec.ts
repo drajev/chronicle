@@ -29,9 +29,7 @@ describe("object utils", () => {
     });
 
     it("should handle non-existent keys", () => {
-      const result = omit(testObject, [
-        "nonexistent" as keyof typeof testObject,
-      ]);
+      const result = omit(testObject, ["nonexistent" as keyof typeof testObject]);
       expect(result).toEqual(testObject);
     });
   });
@@ -56,9 +54,7 @@ describe("object utils", () => {
     });
 
     it("should handle non-existent keys", () => {
-      const result = pick(testObject, [
-        "nonexistent" as keyof typeof testObject,
-      ]);
+      const result = pick(testObject, ["nonexistent" as keyof typeof testObject]);
       expect(result).toEqual({});
     });
 
@@ -109,11 +105,7 @@ describe("object utils", () => {
           e?: number;
         };
       }
-      const result = deepMerge<TestObj>(
-        { a: { b: 1, c: 2 } },
-        { a: { d: 3 } },
-        { a: { e: 4 } },
-      );
+      const result = deepMerge<TestObj>({ a: { b: 1, c: 2 } }, { a: { d: 3 } }, { a: { e: 4 } });
       expect(result).toEqual({
         a: { b: 1, c: 2, d: 3, e: 4 },
       });
@@ -133,10 +125,7 @@ describe("object utils", () => {
         b?: { c?: number; d?: number };
         e?: number;
       }
-      const result = deepMerge<TestObj>(
-        { a: 1, b: { c: 2 } },
-        { b: { d: 3 }, e: 4 },
-      );
+      const result = deepMerge<TestObj>({ a: 1, b: { c: 2 } }, { b: { d: 3 }, e: 4 });
       expect(result).toEqual({
         a: 1,
         b: { c: 2, d: 3 },
@@ -165,10 +154,7 @@ describe("object utils", () => {
       interface TestObj {
         a: number;
       }
-      const result = deepMerge<TestObj>(
-        { a: 1 },
-        undefined as unknown as Partial<TestObj>,
-      );
+      const result = deepMerge<TestObj>({ a: 1 }, undefined as unknown as Partial<TestObj>);
       expect(result).toEqual({ a: 1 });
     });
   });

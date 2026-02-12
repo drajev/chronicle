@@ -1,10 +1,9 @@
-import Link from "next/link";
 import Spinner from "@/components/ui/Spinner/Spinner";
-import classes from "./Button.module.scss";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import classes from "./Button.module.scss";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   ref?: React.Ref<HTMLButtonElement>;
   variant?: "primary" | "secondary" | "ghost" | "danger";
   size?: "sm" | "md" | "lg";
@@ -38,8 +37,7 @@ const Button = ({
           ? classes.ghost
           : classes.danger;
 
-  const sizeClass =
-    size === "sm" ? classes.sm : size === "lg" ? classes.lg : classes.md;
+  const sizeClass = size === "sm" ? classes.sm : size === "lg" ? classes.lg : classes.md;
 
   const buttonClasses = cn(
     classes.root,
@@ -48,14 +46,12 @@ const Button = ({
     isLoading && classes.loading,
     fullWidth && classes.fullWidth,
     !children && icon && classes.iconOnly,
-    className,
+    className
   );
 
   const content = (
     <>
-      {isLoading && (
-        <Spinner size={size} className={classes.spinner} aria-label="Loading" />
-      )}
+      {isLoading && <Spinner size={size} className={classes.spinner} aria-label="Loading" />}
       {icon && iconPosition === "left" && !isLoading && (
         <span className={classes.icon}>{icon}</span>
       )}

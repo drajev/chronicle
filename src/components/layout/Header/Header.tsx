@@ -1,12 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { HiOutlineBars3, HiOutlineXMark, HiOutlineSun, HiOutlineMoon, HiOutlineBookOpen } from "react-icons/hi2";
-import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui";
+import { useTheme } from "@/contexts/ThemeContext";
 import { NAV_HEADER_LINKS, ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  HiOutlineBars3,
+  HiOutlineBookOpen,
+  HiOutlineMoon,
+  HiOutlineSun,
+  HiOutlineXMark,
+} from "react-icons/hi2";
 import classes from "./Header.module.scss";
 
 const Header = () => {
@@ -22,16 +28,9 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav
-          className={cn(classes.nav, isMobileMenuOpen && classes.navOpen)}
-          aria-label="Main"
-        >
+        <nav className={cn(classes.nav, isMobileMenuOpen && classes.navOpen)} aria-label="Main">
           {NAV_HEADER_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={classes.link}
-            >
+            <Link key={link.href} href={link.href} className={classes.link}>
               {link.label}
             </Link>
           ))}

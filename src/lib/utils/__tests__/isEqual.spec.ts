@@ -42,12 +42,8 @@ describe("isEqual", () => {
   });
 
   it("compares Dates", () => {
-    expect(
-      isEqual(new Date("2024-01-01"), new Date("2024-01-01")),
-    ).toBe(true);
-    expect(
-      isEqual(new Date("2024-01-01"), new Date("2024-01-02")),
-    ).toBe(false);
+    expect(isEqual(new Date("2024-01-01"), new Date("2024-01-01"))).toBe(true);
+    expect(isEqual(new Date("2024-01-01"), new Date("2024-01-02"))).toBe(false);
   });
 
   it("handles null and undefined", () => {

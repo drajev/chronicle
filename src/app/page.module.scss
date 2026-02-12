@@ -3,30 +3,38 @@
 
 .home {
   width: 100%;
+  min-height: 100%;
 }
 
 .home__hero {
-  padding: $spacing-3xl $spacing-l;
+  min-height: 100vh;
+  padding: $spacing-2xl $spacing-l $spacing-3xl;
   background: var(--gradient-subtle);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 
   @media (max-width: $screen-md-max) {
-    padding: $spacing-2xl $spacing-m;
+    padding: $spacing-xl $spacing-m $spacing-2xl;
   }
 }
 
 .home__heroContent {
-  max-width: 800px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
+  align-items: center;
 }
 
 .home__title {
   @include h1;
   color: var(--text-primary);
-  margin-bottom: $spacing-m;
+  margin-bottom: $spacing-s;
 }
 
 .home__subtitle {
@@ -36,12 +44,12 @@
   margin: 0 auto;
 }
 
-.home__actions {
-  display: flex;
-  gap: $spacing-m;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: $spacing-l;
+.home__carousel {
+  background: transparent !important;
+  padding-top: $spacing-m;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .home__features {

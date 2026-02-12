@@ -31,12 +31,7 @@ export interface PaginatedResponse<T> {
 /**
  * Topic categories for the app
  */
-export type TopicCategory =
-  | "business"
-  | "technology"
-  | "world"
-  | "science"
-  | "culture";
+export type TopicCategory = "business" | "technology" | "world" | "science" | "culture";
 
 /**
  * Topic configuration

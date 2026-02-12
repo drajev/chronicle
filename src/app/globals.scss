@@ -109,13 +109,16 @@
 // --------------------------------------------------------------
 // Base Styles
 // --------------------------------------------------------------
-html,
-body {
+html {
+  height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
 body {
+  min-height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   color: var(--text-primary);
   background-color: var(--surface-primary);
   font-family: $font-primary;

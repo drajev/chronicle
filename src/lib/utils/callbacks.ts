@@ -6,21 +6,15 @@ export const stopPropagationOnEscape = (e: KeyboardEvent) => {
   }
 };
 
-export const preventDefault = (
-  e: MouseEvent | FocusEvent | KeyboardEvent,
-) => {
+export const preventDefault = (e: MouseEvent | FocusEvent | KeyboardEvent) => {
   e.preventDefault();
 };
 
-export const stopPropagation = (
-  e: MouseEvent | FocusEvent | KeyboardEvent,
-) => {
+export const stopPropagation = (e: MouseEvent | FocusEvent | KeyboardEvent) => {
   e.stopPropagation();
 };
 
-export const preventDefaultAndStopPropagation = (
-  e: MouseEvent | FocusEvent | KeyboardEvent,
-) => {
+export const preventDefaultAndStopPropagation = (e: MouseEvent | FocusEvent | KeyboardEvent) => {
   e.preventDefault();
   e.stopPropagation();
 };

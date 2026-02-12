@@ -1,17 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
-import {
-  calculateRenderedTextWidth,
-  checkVisibility,
-  isBrowser,
-  setStyleProperties,
-} from "../dom";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { calculateRenderedTextWidth, checkVisibility, isBrowser, setStyleProperties } from "../dom";
 
 const createElementMock = vi.fn();
 
@@ -61,14 +49,8 @@ describe("DOM utilities", () => {
       };
       setStyleProperties(mockElement, cssVars);
       expect(mockElement.style.setProperty).toHaveBeenCalledTimes(2);
-      expect(mockElement.style.setProperty).toHaveBeenCalledWith(
-        "--color",
-        "red",
-      );
-      expect(mockElement.style.setProperty).toHaveBeenCalledWith(
-        "--size",
-        "12px",
-      );
+      expect(mockElement.style.setProperty).toHaveBeenCalledWith("--color", "red");
+      expect(mockElement.style.setProperty).toHaveBeenCalledWith("--size", "12px");
     });
 
     it("handles null element gracefully", () => {
@@ -115,7 +97,7 @@ describe("DOM utilities", () => {
       const width = calculateRenderedTextWidth("test", 16);
       expect(width).toBe(100);
       expect(mockContext.font).toBe(
-        '16px Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+        '16px Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"'
       );
     });
 

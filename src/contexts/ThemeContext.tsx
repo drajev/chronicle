@@ -1,17 +1,7 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
-import {
-  THEME_STORAGE_KEY,
-  THEME_COOKIE_MAX_AGE,
-} from "@/lib/constants/theme";
+import { THEME_COOKIE_MAX_AGE, THEME_STORAGE_KEY } from "@/lib/constants/theme";
+import { type ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
 
 export type Theme = "light" | "dark";
 
@@ -53,9 +43,7 @@ export const ThemeProvider = ({
 
   const value: ThemeContextValue = { theme, setTheme, toggleTheme };
 
-  return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = (): ThemeContextValue => {

@@ -1,0 +1,84 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.root {
+  border-top: 1px solid var(--border-secondary);
+  margin-top: auto;
+  background-color: var(--surface-secondary);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-l;
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-l $spacing-m;
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $spacing-l;
+  padding-bottom: $spacing-l;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-s;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  @include body1;
+
+  &:hover {
+    color: var(--text-primary);
+    opacity: 0.85;
+  }
+}
+
+.brandIcon {
+  width: $icon-sm;
+  height: $icon-sm;
+  color: var(--text-secondary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link {
+  @include body2;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color $transition-short;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+.bottom {
+  padding-top: $spacing-l;
+  text-align: center;
+}
+
+.copyright {
+  @include body3;
+  color: var(--text-tertiary);
+}

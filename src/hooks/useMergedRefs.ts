@@ -1,29 +1,26 @@
-import {
-  type Ref,
-  type RefCallback,
-  useCallback,
-} from "react";
+import { type Ref, type RefCallback, useCallback, useRef } from "react";
 
 type PossibleRef<T> = Ref<T> | undefined;
 
-const assignRef = <T>(ref: PossibleRef<T>, value: T) => {
+function assignRef<T>(ref: PossibleRef<T>, value: T): void {
   if (typeof ref === "function") {
     ref(value);
   } else if (ref !== null && typeof ref === "object" && "current" in ref) {
     (ref as { current: T }).current = value;
   }
-};
+}
 
-const mergeRefs = <T>(...refs: PossibleRef<T>[]) => {
-  return (node: T) => {
-    for (const ref of refs) {
-      if (ref) {
-        assignRef(ref, node);
-      }
+/**
+ * Returns a stable callback ref that assigns the node to all given refs.
+ * Use when a single DOM node must be shared with multiple ref consumers
+ * (e.g. intersection observer + parent ref, or measure ref + forwarded ref).
+ */
+export function useMergedRefs<T>(...refs: PossibleRef<T>[]): RefCallback<T> {
+  const refsRef = useRef(refs);
+  refsRef.current = refs;
+  return useCallback((node: T) => {
+    for (const ref of refsRef.current) {
+      if (ref) assignRef(ref, node);
     }
-  };
-};
-
-export const useMergedRefs = <T>(...refs: PossibleRef<T>[]) => {
-  return useCallback(mergeRefs(...refs), [...refs]) as RefCallback<T>;
-};
+  }, []);
+}

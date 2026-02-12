@@ -1,0 +1,41 @@
+@use "@/assets/scss/variables.scss" as *;
+
+.root {
+  background-color: var(--surface-primary);
+  border-radius: $radius-component;
+  transition: box-shadow $transition-short, border-color $transition-short;
+}
+
+.default {
+  border: 1px solid var(--border-secondary);
+}
+
+.outlined {
+  border: 1px solid var(--border-primary);
+  background-color: var(--surface-secondary);
+}
+
+.elevated {
+  border: 1px solid var(--border-secondary);
+  box-shadow: var(--shadow-md);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.paddingNone {
+  padding: 0;
+}
+
+.paddingSm {
+  padding: $spacing-m;
+}
+
+.paddingMd {
+  padding: $spacing-l;
+}
+
+.paddingLg {
+  padding: $spacing-xl;
+}

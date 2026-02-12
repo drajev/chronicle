@@ -1,0 +1,61 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-xl;
+  background-color: var(--surface-primary);
+}
+
+.content {
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-l;
+}
+
+.title {
+  @include h2;
+  color: var(--text-primary);
+}
+
+.message {
+  @include body1;
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-m;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.details {
+  margin-top: $spacing-xl;
+  padding: $spacing-l;
+  background-color: var(--surface-secondary);
+  border-radius: $radius-component;
+  text-align: left;
+
+  summary {
+    @include body2;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: $spacing-m;
+    color: var(--text-primary);
+  }
+
+  pre {
+    @include body3;
+    font-family: $font-mono;
+    color: var(--text-error);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}

@@ -1,0 +1,31 @@
+@use "@/assets/scss/variables.scss" as *;
+
+.root {
+  display: inline-block;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: $radius-full;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+.sm {
+  width: $spacing-m;
+  height: $spacing-m;
+}
+
+.md {
+  width: $icon-sm;
+  height: $icon-sm;
+}
+
+.lg {
+  width: $icon-md;
+  height: $icon-md;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

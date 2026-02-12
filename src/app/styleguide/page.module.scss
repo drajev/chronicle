@@ -1,0 +1,442 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $spacing-2xl $spacing-l $spacing-3xl;
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-xl $spacing-m $spacing-2xl;
+  }
+}
+
+.header {
+  margin-bottom: $spacing-2xl;
+}
+
+.title {
+  @include h1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-m;
+  color: var(--text-primary);
+  margin-bottom: $spacing-s;
+}
+
+.titleIcon {
+  width: $icon-xl;
+  height: $icon-xl;
+  color: var(--focus-ring);
+  flex-shrink: 0;
+}
+
+.subtitle {
+  @include body1;
+  color: var(--text-secondary);
+}
+
+.section {
+  margin-bottom: $spacing-2xl;
+  padding-bottom: $spacing-2xl;
+  border-bottom: 1px solid var(--border-secondary);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.sectionTitle {
+  @include h2;
+  display: flex;
+  align-items: center;
+  gap: $spacing-s;
+  color: var(--text-primary);
+  margin-bottom: $spacing-m;
+}
+
+.sectionIcon {
+  width: $icon-md;
+  height: $icon-md;
+  color: var(--text-secondary);
+}
+
+.sectionDesc {
+  @include body2;
+  color: var(--text-secondary);
+  margin-bottom: $spacing-l;
+}
+
+.paletteRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+  margin-bottom: $spacing-xl;
+}
+
+.paletteSwatch {
+  flex: 1;
+  min-width: 100px;
+  height: 80px;
+  border-radius: $radius-component;
+  border: 1px solid var(--border-secondary);
+  display: flex;
+  align-items: flex-end;
+  padding: $spacing-s;
+
+  &[data-swatch="bg"] {
+    background-color: var(--theme-bg);
+  }
+  &[data-swatch="surface"] {
+    background-color: var(--theme-surface);
+  }
+  &[data-swatch="muted"] {
+    background-color: var(--theme-muted);
+    .paletteLabel {
+      color: var(--text-inverted);
+    }
+  }
+  &[data-swatch="accent"] {
+    background-color: var(--theme-accent);
+    .paletteLabel {
+      color: var(--text-inverted);
+    }
+  }
+}
+
+.paletteLabel {
+  @include body3;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.gradientPreview {
+  height: 48px;
+  border-radius: $radius-component;
+  background: var(--gradient-subtle);
+  margin-bottom: $spacing-s;
+  border: 1px solid var(--border-secondary);
+}
+
+.gradientLabel {
+  @include body3;
+  color: var(--text-tertiary);
+}
+
+.block {
+  margin-bottom: $spacing-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockTitle {
+  @include subtitle2;
+  color: var(--text-secondary);
+  margin-bottom: $spacing-m;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+  align-items: center;
+}
+
+.inputRow {
+  max-width: 360px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: $spacing-l;
+  margin-bottom: $spacing-xl;
+}
+
+.cardsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+}
+
+.cardTitle {
+  @include h5;
+  color: var(--text-primary);
+  margin-bottom: $spacing-s;
+}
+
+.cardText {
+  @include body2;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.cardPaddingDemo {
+  @include body3;
+  color: var(--text-tertiary);
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xl;
+  align-items: center;
+}
+
+.linkWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+
+  svg {
+    width: $icon-sm;
+    height: $icon-sm;
+  }
+}
+
+.iconsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: $spacing-m;
+}
+
+.iconCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-s;
+  padding: $spacing-m;
+  border: 1px solid var(--border-secondary);
+  border-radius: $radius-component;
+  background-color: var(--surface-secondary);
+}
+
+.iconSvg {
+  width: $icon-md;
+  height: $icon-md;
+  color: var(--text-primary);
+}
+
+.iconName {
+  @include body3;
+  color: var(--text-tertiary);
+  text-align: center;
+  word-break: break-all;
+}
+
+.virtualScrollLazyWrapper {
+  min-height: 360px;
+}
+
+// VirtualScroll skeleton: same layout as VirtualScroll (toolbar + 360px list area)
+.virtualScrollSkeleton {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.virtualScrollSkeletonToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+  align-items: center;
+  margin-bottom: $spacing-m;
+}
+
+.virtualScrollSkeletonList {
+  height: 360px;
+  max-width: 48rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.virtualScrollSkeletonRow {
+  flex: 0 0 72px;
+  min-height: 72px;
+  padding: $spacing-l $spacing-s;
+  border-bottom: 1px solid var(--border-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.virtualScrollToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-m;
+  align-items: center;
+  margin-bottom: $spacing-m;
+}
+
+.virtualScrollArea {
+  height: 360px;
+}
+
+.virtualScrollContent {
+  margin: 0 auto;
+  max-width: 48rem;
+}
+
+.virtualScrollItem {
+  cursor: pointer;
+  background-color: var(--surface-primary);
+
+  &:hover {
+    background-color: var(--surface-secondary);
+  }
+}
+
+.virtualScrollItemContent {
+  overflow: hidden;
+}
+
+.virtualScrollItemInner {
+  border-bottom: 1px solid var(--border-secondary);
+  padding: $spacing-l $spacing-s;
+}
+
+.virtualScrollItemIndex {
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-right: $spacing-xs;
+}
+
+.virtualScrollItemText {
+  @include body2;
+  line-height: $line-height-relaxed;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.carouselCard {
+  height: 100%;
+  min-height: 100px;
+}
+
+.carouselCardTitle {
+  @include subtitle2;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: $spacing-s;
+}
+
+.carouselCardText {
+  @include body3;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+// Carousel skeleton: same layout and dimensions as Carousel (itemWidth=200, gap=16, card height=100)
+.carouselSkeleton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.carouselSkeletonViewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100px;
+}
+
+.carouselSkeletonRow {
+  display: flex;
+  flex-shrink: 0;
+  gap: 16px;
+  flex-wrap: nowrap;
+  height: 100px;
+}
+
+.carouselSkeletonSlot {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 100px;
+}
+
+.carouselSkeletonControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-m;
+  margin-top: $spacing-m;
+}
+
+.skeletonDemo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-l;
+  max-width: 360px;
+}
+
+.skeletonLine {
+  border-radius: $radius-s;
+}
+
+.skeletonComponentVariants {
+  margin-top: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-l;
+  max-width: 360px;
+}
+
+.skeletonVariantSubtitle {
+  @include subtitle2;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.skeletonCardRow {
+  display: flex;
+  gap: $spacing-l;
+}
+
+.skeletonCardSlot {
+  width: 120px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.skeletonButtonRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-l;
+}
+
+.skeletonListLineRow {
+  padding: $spacing-l $spacing-s;
+  border: 1px solid var(--border-secondary);
+  border-radius: $radius-component;
+}
+
+.lazyBlock {
+  min-height: 80px;
+  padding: $spacing-l;
+  border: 1px dashed var(--border-secondary);
+  border-radius: $radius-component;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lazyBlockContent {
+  @include body2;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.lazyBlockSkeleton {
+  // Match lazyBlock structure
+  min-height: 80px;
+  padding: $spacing-l;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 280px;
+}

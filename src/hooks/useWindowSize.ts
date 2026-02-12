@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { BREAKPOINTS } from "@/lib/constants/breakpoints";
 
-interface WindowSize {
+export interface WindowSize {
   width: number;
   height: number;
   isMobile: boolean;
@@ -22,22 +23,21 @@ export function useWindowSize(): WindowSize {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const updateWindowSize = () => {
+    const update = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
-
       setWindowSize({
         width,
         height,
-        isMobile: width <= 576,
-        isTablet: width <= 992,
-        isDesktop: width > 992,
+        isMobile: width <= BREAKPOINTS.sm,
+        isTablet: width <= BREAKPOINTS.lg,
+        isDesktop: width > BREAKPOINTS.lg,
       });
     };
 
-    updateWindowSize();
-    window.addEventListener("resize", updateWindowSize);
-    return () => window.removeEventListener("resize", updateWindowSize);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   return windowSize;

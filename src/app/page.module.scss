@@ -1,0 +1,87 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.home {
+  width: 100%;
+}
+
+.home__hero {
+  padding: $spacing-3xl $spacing-l;
+  background: var(--gradient-subtle);
+  text-align: center;
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-2xl $spacing-m;
+  }
+}
+
+.home__heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.home__title {
+  @include h1;
+  color: var(--text-primary);
+  margin-bottom: $spacing-m;
+}
+
+.home__subtitle {
+  @include body1;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.home__actions {
+  display: flex;
+  gap: $spacing-m;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: $spacing-l;
+}
+
+.home__features {
+  padding: $spacing-3xl $spacing-l;
+  background-color: var(--surface-primary);
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-2xl $spacing-m;
+  }
+}
+
+.home__featuresContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home__featuresTitle {
+  @include h2;
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+  color: var(--text-primary);
+}
+
+.home__featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-xl;
+
+  @media (max-width: $screen-md-max) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home__featureTitle {
+  @include h4;
+  color: var(--text-primary);
+  margin-bottom: $spacing-m;
+}
+
+.home__featureDescription {
+  @include body1;
+  color: var(--text-secondary);
+}

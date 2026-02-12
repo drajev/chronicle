@@ -1,0 +1,127 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.root {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--surface-primary);
+  border-bottom: 1px solid var(--border-secondary);
+  backdrop-filter: blur(10px);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: $spacing-m $spacing-l;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-l;
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-m;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  @include h4;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 700;
+
+  &:hover {
+    color: var(--theme-accent);
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+  flex: 1;
+  justify-content: center;
+
+  @media (max-width: $screen-md-max) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--surface-primary);
+    border-bottom: 1px solid var(--border-secondary);
+    padding: $spacing-l;
+    gap: $spacing-m;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-medium;
+  }
+}
+
+.navOpen {
+  @media (max-width: $screen-md-max) {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.link {
+  @include body1;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color $transition-short;
+  position: relative;
+
+  &:hover {
+    color: var(--theme-accent);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -$spacing-xs;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--theme-accent);
+    transition: width $transition-short;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-m;
+}
+
+.menuToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-xs;
+  color: var(--text-primary);
+
+  @media (max-width: $screen-md-max) {
+    display: flex;
+  }
+}
+
+.menuIcon {
+  width: $icon-md;
+  height: $icon-md;
+}

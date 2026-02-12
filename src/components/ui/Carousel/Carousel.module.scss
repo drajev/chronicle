@@ -1,0 +1,29 @@
+@use "@/assets/scss/variables.scss" as *;
+
+.wrapper {
+  width: 100%;
+}
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.slot {
+  flex: 0 0 auto;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-m;
+  margin-top: $spacing-m;
+}

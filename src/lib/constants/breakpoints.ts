@@ -1,7 +1,4 @@
-/**
- * Breakpoints (px) for responsive layout.
- * Keep in sync with assets/scss/_variables.scss ($screen-*-max).
- */
+/** Keep in sync with assets/scss/_variables.scss ($screen-*-max) */
 export const BREAKPOINTS = {
   xs: 375,
   sm: 576,

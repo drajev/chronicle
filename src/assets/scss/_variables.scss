@@ -1,11 +1,6 @@
-// --------------------------------------------------------------
-// --------------------------- Typography -----------------------
-// --------------------------------------------------------------
-// Font families
 $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 $font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
 
-// Font sizes
 $h1: 48px;
 $h2: 36px;
 $h3: 28px;
@@ -16,17 +11,10 @@ $body1: 16px;
 $body2: 14px;
 $body3: 12px;
 
-// Line heights
 $line-height-tight: 125%;
 $line-height-normal: 135%;
 $line-height-relaxed: 150%;
 
-// --------------------------------------------------------------
-// --------------------------- Colors ---------------------------
-// --------------------------------------------------------------
-
-// Theme palettes: 4 base colors per theme (used in globals for CSS vars)
-// Light theme - warm, editorial
 $theme-light-bg: #f6f4f0;
 $theme-light-surface: #ffffff;
 $theme-light-muted: #4a4541;
@@ -34,19 +22,16 @@ $theme-light-accent: #0d6b5c;
 $theme-light-accent-hover: #0a5549;
 $theme-light-accent-muted: rgba(13, 107, 92, 0.12);
 
-// Dark theme - calm, deep
 $theme-dark-bg: #0f1419;
 $theme-dark-surface: #1c2128;
 $theme-dark-muted: #8b949e;
 $theme-dark-accent: #2dd4bf;
 $theme-dark-accent-hover: #5eead4;
 $theme-dark-accent-muted: rgba(45, 212, 191, 0.15);
-// Dark borders: visible contrast on dark surfaces (#1c2128)
 $theme-dark-border-primary: #6e7681;
 $theme-dark-border-secondary: #484f58;
 $theme-dark-border-tertiary: #404852;
 
-// Theme shadows (derived from palette)
 $theme-light-shadow-sm: 0 1px 2px rgba(74, 69, 65, 0.06);
 $theme-light-shadow-md: 0 4px 12px rgba(74, 69, 65, 0.08);
 $theme-light-shadow-lg: 0 12px 24px rgba(74, 69, 65, 0.1);
@@ -57,13 +42,13 @@ $theme-dark-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
 $theme-dark-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
 $theme-dark-shadow-xl: 0 24px 40px rgba(0, 0, 0, 0.35);
 
-// Theme gradients (use in globals as --gradient-*)
 $theme-light-gradient-subtle: linear-gradient(135deg, #{$theme-light-bg} 0%, #{$theme-light-surface} 100%);
+$theme-light-gradient-hero: linear-gradient(160deg, #e8f5f3 0%, #{$theme-light-bg} 35%, #{$theme-light-surface} 100%);
 $theme-light-gradient-accent: linear-gradient(135deg, #{$theme-light-accent} 0%, #{$theme-light-accent-hover} 100%);
 $theme-dark-gradient-subtle: linear-gradient(135deg, #{$theme-dark-bg} 0%, #{$theme-dark-surface} 100%);
+$theme-dark-gradient-hero: linear-gradient(160deg, #0d1f1c 0%, #{$theme-dark-bg} 40%, #{$theme-dark-surface} 100%);
 $theme-dark-gradient-accent: linear-gradient(135deg, #{$theme-dark-accent} 0%, #{$theme-dark-accent-hover} 100%);
 
-// Base colors (legacy - still used by system colors etc.)
 $black100: #050505;
 $black90: #121212;
 $black80: #1f1f1f;
@@ -86,7 +71,6 @@ $white30: #a2a2a2;
 $white20: #959595;
 $white10: #888888;
 
-// Brand colors
 $primary: #0066cc;
 $primary-dark: #0052a3;
 $primary-light: #3385d6;
@@ -95,7 +79,6 @@ $secondary: #666666;
 $secondary-dark: #4d4d4d;
 $secondary-light: #808080;
 
-// System colors
 $success: #29bc63;
 $success-light: #53d47f;
 $success-dark: #0da048;
@@ -112,7 +95,6 @@ $info: #21a2ff;
 $info-light: #6dc2ff;
 $info-dark: #007cd5;
 
-// Opacity variants
 $opacity-black-05: rgba(5, 5, 5, 0.05);
 $opacity-black-10: rgba(5, 5, 5, 0.1);
 $opacity-black-20: rgba(5, 5, 5, 0.2);
@@ -121,9 +103,6 @@ $opacity-white-05: rgba(255, 255, 255, 0.05);
 $opacity-white-10: rgba(255, 255, 255, 0.1);
 $opacity-white-20: rgba(255, 255, 255, 0.2);
 
-// --------------------------------------------------------------
-// --------------------------- Spacing ---------------------------
-// --------------------------------------------------------------
 $spacing-xs: 4px;
 $spacing-s: 8px;
 $spacing-m: 16px;
@@ -132,9 +111,6 @@ $spacing-xl: 32px;
 $spacing-2xl: 48px;
 $spacing-3xl: 64px;
 
-// --------------------------------------------------------------
-// --------------------------- Radius ---------------------------
-// --------------------------------------------------------------
 $radius-xs: 4px;
 $radius-s: 8px;
 $radius-m: 12px;
@@ -143,7 +119,6 @@ $radius-xl: 20px;
 $radius-2xl: 24px;
 $radius-full: 9999px;
 
-// Component defaults (use these for consistent UI)
 $radius-component: $radius-m;
 $focus-ring-offset: 3px;
 $icon-sm: 20px;
@@ -151,9 +126,6 @@ $icon-md: 24px;
 $icon-lg: 32px;
 $icon-xl: 40px;
 
-// --------------------------------------------------------------
-// ------------------ Screen Sizes (Breakpoints) ---------------
-// --------------------------------------------------------------
 $screen-xs-max: 375px;
 $screen-sm-max: 576px;
 $screen-md-max: 768px;
@@ -162,16 +134,10 @@ $screen-xl-max: 1230px;
 $screen-xxl-max: 1440px;
 $screen-3xl-max: 1920px;
 
-// --------------------------------------------------------------
-// ------------------------ Transitions -------------------------
-// --------------------------------------------------------------
 $transition-short: 150ms ease-out;
 $transition-medium: 250ms ease-out;
 $transition-long: 350ms ease-out;
 
-// --------------------------------------------------------------
-// ------------------------ Shadows -----------------------------
-// --------------------------------------------------------------
 $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 $shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
 $shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);

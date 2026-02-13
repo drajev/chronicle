@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { HiOutlineBars3, HiOutlineXMark, HiOutlineSun, HiOutlineMoon, HiOutlineBookOpen } from "react-icons/hi2";
+import { Button, Link } from "@/components/ui";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Button } from "@/components/ui";
 import { NAV_HEADER_LINKS, ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import {
+  HiOutlineBars3,
+  HiOutlineBookOpen,
+  HiOutlineMoon,
+  HiOutlineSun,
+  HiOutlineXMark,
+} from "react-icons/hi2";
 import classes from "./Header.module.scss";
 
 const Header = () => {
@@ -27,11 +32,7 @@ const Header = () => {
           aria-label="Main"
         >
           {NAV_HEADER_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={classes.link}
-            >
+            <Link key={link.href} href={link.href} className={classes.link}>
               {link.label}
             </Link>
           ))}

@@ -1,5 +1,5 @@
-import classes from "./Spinner.module.scss";
 import { cn } from "@/lib/utils";
+import classes from "./Spinner.module.scss";
 
 export interface SpinnerProps {
   size?: "sm" | "md" | "lg";

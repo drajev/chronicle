@@ -1,0 +1,159 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.section {
+  padding: $spacing-2xl $spacing-l;
+  background-color: var(--surface-primary);
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-xl $spacing-m;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-l;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionTitle {
+  @include h2;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.viewAll {
+  @include body2;
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.skeletonViewAllPlaceholder {
+  @include body2;
+  visibility: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.carouselWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carouselViewport {
+  max-width: 872px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 900px) {
+    max-width: 576px;
+  }
+
+  @media (max-width: 620px) {
+    max-width: 280px;
+  }
+}
+
+.empty {
+  @include body2;
+  color: var(--text-secondary);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.link {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+$skeleton-slot-width: 280px;
+$skeleton-slot-height: 160px;
+$skeleton-gap: 16px;
+
+.carouselSkeleton {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.carouselSkeletonViewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 872px;
+  margin-left: auto;
+  margin-right: auto;
+  height: $skeleton-slot-height;
+
+  @media (max-width: 900px) {
+    max-width: 576px;
+  }
+
+  @media (max-width: 620px) {
+    max-width: 280px;
+  }
+}
+
+.carouselSkeletonRow {
+  display: flex;
+  flex-shrink: 0;
+  gap: $skeleton-gap;
+  flex-wrap: nowrap;
+  height: $skeleton-slot-height;
+  width: max-content;
+}
+
+.carouselSkeletonSlot {
+  flex: 0 0 $skeleton-slot-width;
+  width: $skeleton-slot-width;
+  height: $skeleton-slot-height;
+  min-width: $skeleton-slot-width;
+}
+
+.skeletonCard {
+  width: 100%;
+  height: 100%;
+  min-height: $skeleton-slot-height;
+}
+
+.carouselSkeletonControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-m;
+  margin-top: $spacing-m;
+}
+
+.carouselCard {
+  height: 100%;
+  min-height: 160px;
+}
+
+.cardLink {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}

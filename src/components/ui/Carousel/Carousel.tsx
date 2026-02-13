@@ -1,17 +1,9 @@
 "use client";
 
-import {
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import Button from "@/components/ui/Button/Button";
 import { cn } from "@/lib/utils";
+import { type ReactNode, useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import classes from "./Carousel.module.scss";
 
 export interface CarouselProps<T> {
@@ -19,7 +11,6 @@ export interface CarouselProps<T> {
   renderItem: (item: T, index: number) => ReactNode;
   itemWidth: number;
   getItemKey?: (item: T, index: number) => string | number;
-  /** Accessible label for the carousel region (e.g. "Featured items"). */
   ariaLabel?: string;
   visibleCount?: number;
   gap?: number;
@@ -33,10 +24,6 @@ export interface CarouselProps<T> {
 const DEFAULT_GAP = 16;
 const DEFAULT_TRANSITION_MS = 300;
 
-/**
- * Infinite horizontal carousel. Prev/next buttons below; seamless loop.
- * Uses three copies of items so there are never empty slots at the ends.
- */
 const Carousel = <T,>({
   items,
   renderItem,
@@ -64,17 +51,13 @@ const Carousel = <T,>({
 
   currentIndexRef.current = currentIndex;
 
-  const duplicatedItems: T[] = useMemo(
-    () => [...items, ...items, ...items],
-    [items]
-  );
+  const duplicatedItems: T[] = useMemo(() => [...items, ...items, ...items], [items]);
 
   const slotKeys = useMemo(
     () =>
       Array.from(
         { length: 3 * n },
-        (_, idx) =>
-          `carousel-${baseId}-${idx % n}-copy-${Math.floor(idx / n)}`
+        (_, idx) => `carousel-${baseId}-${idx % n}-copy-${Math.floor(idx / n)}`
       ),
     [n, baseId]
   );
@@ -136,8 +119,7 @@ const Carousel = <T,>({
           className={classes.track}
           style={{
             transform: `translateX(${offsetPx}px)`,
-            transition:
-              noTransition ? "none" : `transform ${transitionMs}ms ease-out`,
+            transition: noTransition ? "none" : `transform ${transitionMs}ms ease-out`,
             gap: `${gap}px`,
           }}
           onTransitionEnd={handleTransitionEnd}

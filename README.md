@@ -1,185 +1,143 @@
 # Chronicle
 
-A news exploration app centered around time, not feeds. Discover what happened on this exact day historically, explore current events, and see how topics evolve across time.
+A news reader powered by [The Guardian Open Platform](https://open-platform.theguardian.com/). Browse featured stories and headlines on the home page, or go to News to search by date, topic, and keyword. Clean, fast, and easy to use.
 
-## 🎯 Core Concept
+## Features
 
-Chronicle answers three fundamental questions:
-- **What happened on this exact day (historically)?** - Explore headlines from the same date across different years
-- **What's happening right now?** - Stay grounded in the present with recent news
-- **How does a topic evolve across time?** - Track how stories develop and change over time
+- **Home**: Featured carousel and latest headlines with infinite scroll
+- **News**: Search articles by date range, topic (Business, Technology, World, Science, Culture, Sport, Economics), and keyword; paginated results
+- **Light/dark theme** with persistence (cookie + localStorage)
+- **Responsive layout** and accessible UI
 
-This is not a Twitter clone, not an RSS reader, not a dashboard. It's a focused exploration tool for understanding news through the lens of time.
+## Tech Stack
 
-## ✨ Features
+- [Next.js 16](https://nextjs.org/) (App Router)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/) (strict)
+- [Redux Toolkit](https://redux-toolkit.js.org/) + [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- [Zod](https://zod.dev/) for validation
+- [Sass Modules](https://sass-lang.com/) + CSS variables
+- [date-fns](https://date-fns.org/), [React Icons (Hi2)](https://react-icons.github.io/react-icons/)
+- [Biome](https://biomejs.dev/) for lint/format
+- [Bun](https://bun.sh/) (or Node.js ≥ 20)
 
-### 1. On This Day
-Select a date (day + month, year optional) and explore headlines from that exact date across different years, grouped by year.
+## Prerequisites
 
-### 2. Recent News
-Latest headlines with pagination or infinite scroll to keep you connected to current events.
+- **Bun** ≥ 1.0.0 or **Node.js** ≥ 20
+- **Guardian API key** (required for news and home content)
 
-### 3. Topics
-Explore fixed topics (business, tech, world, science, culture) to see how stories evolve over time.
+## Guardian API Key
 
-## 🛠️ Tech Stack
+The app uses The Guardian Content API for all article data. You must create your own API key; the app will not work without it.
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-- **React**: [React 19](https://react.dev/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/) (strict mode)
-- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) + [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
-- **HTTP Client**: [Axios](https://axios-http.com/)
-- **Validation**: [Zod](https://zod.dev/)
-- **Styling**: [Sass Modules](https://sass-lang.com/) with CSS variables
-- **Date Handling**: [date-fns](https://date-fns.org/)
-- **Forms**: [React Hook Form](https://react-hook-form.com/)
-- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
-- **Linting & Formatting**: [Biome](https://biomejs.dev/)
-- **Runtime**: [Bun](https://bun.sh/)
+1. Go to [The Guardian Open Platform](https://open-platform.theguardian.com/access/).
+2. Register and create an application.
+3. Copy your API key from the dashboard.
+4. Add it to your environment (see [Environment setup](#environment-setup) below).
 
-## 📋 Prerequisites
+Without a valid key, the News page will show an error: *"Invalid or missing API key. Set NEXT_PUBLIC_GUARDIAN_API_KEY in your environment."*
 
-- **Bun** >= 1.0.0 (or Node.js >= 20)
-- **NY Times API Key** - Get yours at [developer.nytimes.com](https://developer.nytimes.com/)
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone <your-repo-url>
-cd next
-
-# Install dependencies
+cd chronicle
 bun install
 ```
 
-### Environment Setup
+### Environment setup
 
-1. Copy the example environment file:
+1. Copy the example env file:
    ```bash
    cp .env.local.example .env.local
    ```
 
-2. Add your NY Times API key to `.env.local`:
+2. Edit `.env.local` and set your Guardian API key:
    ```env
-   NEXT_PUBLIC_NYT_API_KEY=your_nytimes_api_key_here
+   NEXT_PUBLIC_GUARDIAN_API_KEY=your_guardian_api_key_here
    ```
 
-   Get your API key from [NY Times Developer Portal](https://developer.nytimes.com/).
+   Get your key from [Guardian Open Platform](https://open-platform.theguardian.com/access/).
+
+3. (Optional) `NEXT_PUBLIC_API_URL` is only needed if you add custom API routes that use the base API slice; you can leave it as in the example for now.
 
 ### Development
 
 ```bash
-# Start development server
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-### Build
+### Build and run
 
 ```bash
-# Build for production
 bun run build
-
-# Start production server
 bun run start
 ```
 
-## 📁 Project Structure
+## Project structure
 
 ```
 src/
   app/                    # Next.js App Router
-    (routes)/            # Route groups
-    layout.tsx           # Root layout
-    page.tsx             # Home page
-    globals.scss         # Global styles with CSS variables
-  assets/
-    scss/                # Design system
-      _variables.scss    # Design tokens
-      _mixins.scss      # SCSS mixins
-      _utils.scss       # Utility classes
-  components/            # React components
-    ComponentName/
-      ComponentName.tsx
-      ComponentName.module.scss
-      index.ts
-  hooks/                 # Custom React hooks
+    layout.tsx
+    page.tsx              # Home (carousel + headlines)
+    news/                 # News search page
+    about/
+    globals.scss
+  assets/scss/            # Design tokens, mixins, utilities
+  components/
+    layout/               # Header, Footer, MainLayout
+    news/                 # ArticleCard, ArticleList, HeadlinesList, LatestNewsCarousel
+    ui/                   # Button, Carousel, Input, Link, ScrollArea, Skeleton, Spinner, VirtualScroll
+    ErrorBoundary/
+  contexts/               # ThemeContext
+  hooks/                  # useIntersectionObserver
   lib/
-    api/                # API configuration
-      nytimes/          # NY Times API endpoints
-      baseApi.ts        # Base API setup
-    constants/          # App constants
-    schemas/            # Zod validation schemas
-    store/              # Redux store configuration
-    utils/              # Utility functions
-  types/                # TypeScript type definitions
+    api/                  # guardianApi (RTK Query), baseApi
+    constants/            # navigation, topics, theme, breakpoints
+    schemas/              # Zod schemas (Guardian API)
+    store/                # Redux store
+    utils/                # cn, stripHtml, parseDateParam, getDefaultDateRange
+  providers/              # AppProviders (Redux + Theme)
+  types/                  # Shared TypeScript types
 ```
 
-## 🎨 Architecture
+## Scripts
 
-- **Server Components** by default for layouts and data boundaries
-- **Client Components** only where interaction is needed
-- **RTK Query** for all server state management
-- **Zod** as the single source of truth for data validation
-- **Sass Modules** with CSS variables for styling and theming
+| Command           | Description                |
+|-------------------|----------------------------|
+| `bun run dev`     | Start dev server           |
+| `bun run build`   | Production build            |
+| `bun run start`   | Start production server     |
+| `bun run lint`    | Run Biome check             |
+| `bun run lint:fix`| Fix lint issues             |
+| `bun run format`  | Format with Biome           |
+| `bun run type-check` | TypeScript check         |
+| `bun test`        | Run Vitest tests            |
 
-## 📝 Available Scripts
+## API integration
 
-```bash
-# Development
-bun run dev              # Start development server
+The app uses the [Guardian Content API](https://open-platform.theguardian.com/documentation/):
 
-# Production
-bun run build            # Build for production
-bun run start            # Start production server
+- **Content API** (search): articles by section, date range, and query; used for the News page and for home carousel/headlines.
 
-# Code Quality
-bun run lint             # Run linter
-bun run lint:fix         # Fix linting issues
-bun run format           # Format code
-bun run type-check       # TypeScript type checking
-```
+All requests require a valid `api-key` (your `NEXT_PUBLIC_GUARDIAN_API_KEY`). Responses are validated with Zod schemas in `src/lib/schemas/guardianArticle.ts`.
 
-## 🔧 Code Quality
+## Code quality
 
-This project follows strict code quality standards:
+- TypeScript strict mode
+- Biome for linting and formatting
+- Zod at API boundaries
+- Small, composable components and clear separation of concerns
 
-- **TypeScript** strict mode with additional checks
-- **Biome** for linting and formatting
-- **Zod** for runtime type validation
-- **Explicit typing** - no `any` types
-- **Small, composable components**
-- **No code duplication**
+## License
 
-## 📚 API Integration
+MIT. See [LICENSE](LICENSE).
 
-This app uses the [NY Times API](https://developer.nytimes.com/):
+## Acknowledgments
 
-- **Archive API** - Get articles for a specific month/year (for "On This Day")
-- **Article Search API** - Search articles by query, date range, section (for Topics)
-- **Top Stories API** - Get current top stories by section (for Recent News)
-
-## 🎯 Development Principles
-
-- Simple, clean, explicit code
-- No over-engineering
-- No premature abstraction
-- Follow best practices consistently
-- Prioritize UX, performance, and clarity
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [NY Times](https://www.nytimes.com/) for providing the API
-- Built with modern web technologies and best practices
-
----
-
-**Built with ❤️ for exploring news through time**
+- [The Guardian](https://www.theguardian.com/) and [Guardian Open Platform](https://open-platform.theguardian.com/) for the API.

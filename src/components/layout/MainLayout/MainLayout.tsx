@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
-import Header from "../Header/Header";
+import type { ReactNode } from "react";
 import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 import classes from "./MainLayout.module.scss";
 
 const MAIN_CONTENT_ID = "main-content";

@@ -4,8 +4,6 @@ export { default as Carousel } from "./Carousel/Carousel";
 export type { CarouselProps } from "./Carousel/Carousel";
 export { default as Input } from "./Input/Input";
 export type { InputProps } from "./Input/Input";
-export { default as Card } from "./Card/Card";
-export type { CardProps } from "./Card/Card";
 export { default as Link } from "./Link/Link";
 export type { LinkProps } from "./Link/Link";
 export { ScrollArea, ScrollBar } from "./ScrollArea/ScrollArea";

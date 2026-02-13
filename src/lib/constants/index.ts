@@ -6,4 +6,4 @@ export {
   ROUTES,
 } from "./navigation";
 export { THEME_STORAGE_KEY, THEME_COOKIE_MAX_AGE } from "./theme";
-export { TOPICS } from "./topics";
+export { NEWS_TOPICS, TOPICS } from "./topics";

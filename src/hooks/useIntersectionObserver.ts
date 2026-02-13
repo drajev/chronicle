@@ -1,61 +1,42 @@
-import {
-  type Ref,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useMergedRefs } from "./useMergedRefs";
+import { useEffect, useRef, type RefObject } from "react";
 
-export interface UseIntersectionObserverOptions<T extends HTMLElement = HTMLElement> {
-  threshold?: number | number[];
-  rootMargin?: string;
-  root?: Element | null;
-  /** When true, isIntersecting stays true after first intersection and observer disconnects. */
-  triggerOnce?: boolean;
-  /** Optional ref to merge: the observed element is assigned to both the hook's ref and this ref. */
-  ref?: Ref<T | null>;
+function getRootEl(
+  root: RefObject<Element | null> | Element | null | undefined
+): Element | null {
+  if (root == null) return null;
+  if (typeof root === "object" && "current" in root) return root.current;
+  return root as Element;
 }
 
-/**
- * Observes element intersection with viewport.
- * Use for lazy loading, scroll-triggered content, or animations.
- * Pass options.ref when you need both observation and your own ref on the same element.
- */
-export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
-  options: UseIntersectionObserverOptions<T> = {}
-): { ref: Ref<T | null>; isIntersecting: boolean } {
-  const { threshold = 0, rootMargin = "0px", root = null, triggerOnce = false, ref: refProp } = options;
+export interface UseIntersectionObserverOptions {
+  root?: RefObject<Element | null> | Element | null;
+  rootMargin?: string;
+  threshold?: number;
+}
 
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const hasIntersectedRef = useRef(false);
-  const elementRef = useRef<T>(null);
-
-  const handleIntersect = useCallback((entry: IntersectionObserverEntry) => {
-    const intersecting = entry.isIntersecting;
-    setIsIntersecting(intersecting);
-    if (intersecting) hasIntersectedRef.current = true;
-  }, []);
+export function useIntersectionObserver(
+  targetRef: RefObject<Element | null>,
+  options: UseIntersectionObserverOptions,
+  onIntersect: () => void
+): void {
+  const { root = null, rootMargin = "0px", threshold = 0 } = options;
+  const onIntersectRef = useRef(onIntersect);
+  onIntersectRef.current = onIntersect;
+  const rootEl = getRootEl(root);
 
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element || (triggerOnce && hasIntersectedRef.current)) return;
+    const target = targetRef.current;
+    if (!target) return;
+    if (root != null && !rootEl) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const entry = entries[0];
-        if (!entry) return;
-        handleIntersect(entry);
-        if (entry.isIntersecting && triggerOnce) observer.disconnect();
+        const [entry] = entries;
+        if (entry?.isIntersecting) onIntersectRef.current();
       },
-      { threshold, rootMargin, root }
+      { root: rootEl, rootMargin, threshold }
     );
-
-    observer.observe(element);
+    observer.observe(target);
     return () => observer.disconnect();
-  }, [threshold, rootMargin, root, triggerOnce, handleIntersect]);
-
-  const ref = useMergedRefs<T | null>(elementRef, refProp);
-
-  return { ref, isIntersecting };
+  }, [targetRef, root, rootEl, rootMargin, threshold]);
 }

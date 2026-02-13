@@ -7,7 +7,6 @@
   animation: skeleton-pulse $transition-long ease-in-out infinite;
 }
 
-// Layout variants
 .block {
   display: block;
   width: 100%;
@@ -18,7 +17,6 @@
   vertical-align: baseline;
 }
 
-// Component-matching variants (align with Card, Button, list rows)
 .card {
   display: block;
   width: 100%;
@@ -48,7 +46,6 @@
   border-radius: $radius-s;
 }
 
-// Typography variants (for text skeletons)
 .h1 {
   @include h1;
   height: 1em;

@@ -10,14 +10,20 @@ export type SkeletonVariant =
   | "list-line";
 
 export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Variant: layout (text, block) or component-matching (card, button-sm, button-icon-sm, list-line).
-   */
   variant?: SkeletonVariant;
-  /**
-   * Typography for variant="text" (line height).
-   */
-  typography?: "body1" | "body2" | "body3" | "subtitle1" | "subtitle2" | "subtitle3" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  typography?:
+    | "body1"
+    | "body2"
+    | "body3"
+    | "subtitle1"
+    | "subtitle2"
+    | "subtitle3"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6";
   width?: string | number;
   height?: string | number;
   fullWidth?: boolean;
@@ -43,7 +49,8 @@ const Skeleton = ({
   ...props
 }: SkeletonProps) => {
   const variantClass = VARIANT_CLASS_MAP[variant] ?? classes.block;
-  const typographyClass = variant === "text" && typography ? classes[typography as keyof typeof classes] : undefined;
+  const typographyClass =
+    variant === "text" && typography ? classes[typography as keyof typeof classes] : undefined;
 
   const resolvedStyle = {
     ...style,

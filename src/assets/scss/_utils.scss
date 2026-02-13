@@ -1,6 +1,5 @@
 @use './mixins.scss' as *;
 
-// Typography utility classes
 .u-h1 {
   @include h1;
 }
@@ -49,7 +48,6 @@
   @include subtitle3;
 }
 
-// Text color utilities
 .u-text-primary {
   color: var(--text-primary);
 }
@@ -70,7 +68,6 @@
   color: var(--text-disabled);
 }
 
-// Layout utilities
 .u-full-width {
   width: 100%;
 }
@@ -79,7 +76,6 @@
   height: 100%;
 }
 
-// Text utilities
 .u-truncate {
   @include truncate;
 }
@@ -92,7 +88,6 @@
   @include line-clamp(3);
 }
 
-// Skeleton loading state
 .u-skeleton {
   background-color: var(--surface-secondary);
   position: relative;

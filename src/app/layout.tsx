@@ -1,11 +1,11 @@
+import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
+import { MainLayout } from "@/components/layout";
+import { THEME_STORAGE_KEY } from "@/lib/constants/theme";
+import AppProviders from "@/providers";
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
-import AppProviders from "@/providers";
-import { MainLayout } from "@/components/layout";
-import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
-import { THEME_STORAGE_KEY } from "@/lib/constants/theme";
 import "./globals.scss";
 
 const getServerTheme = async (): Promise<"light" | "dark"> => {
@@ -26,7 +26,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Chronicle",
-  description: "A simple place for your notes and thoughts",
+  description:
+    "Curated news from The Guardian. Browse by topic, search by date, and stay informed with a clean, focused reader.",
 };
 
 export default async function RootLayout({

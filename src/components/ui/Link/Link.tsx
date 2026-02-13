@@ -1,9 +1,8 @@
+import { cn } from "@/lib/utils";
 import NextLink from "next/link";
 import classes from "./Link.module.scss";
-import { cn } from "@/lib/utils";
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   variant?: "default" | "primary" | "underline";
   external?: boolean;
@@ -28,13 +27,7 @@ const Link = ({
 
   if (external) {
     return (
-      <a
-        href={href}
-        className={linkClasses}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...props}
-      >
+      <a href={href} className={linkClasses} target="_blank" rel="noopener noreferrer" {...props}>
         {children}
       </a>
     );

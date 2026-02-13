@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { HiOutlineBookOpen } from "react-icons/hi2";
+import { Link } from "@/components/ui";
 import { NAV_FOOTER_LINKS, ROUTES } from "@/lib/constants";
+import { HiOutlineBookOpen } from "react-icons/hi2";
 import classes from "./Footer.module.scss";
 
 const Footer = () => {
@@ -27,9 +27,7 @@ const Footer = () => {
           </nav>
         </div>
         <div className={classes.bottom}>
-          <p className={classes.copyright}>
-            © {currentYear} Chronicle. All rights reserved.
-          </p>
+          <p className={classes.copyright}>© {currentYear} Chronicle. All rights reserved.</p>
         </div>
       </div>
     </footer>

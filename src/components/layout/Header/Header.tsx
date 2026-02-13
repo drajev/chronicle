@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { Button, Link } from "@/components/ui";
 import { useTheme } from "@/contexts/ThemeContext";
 import { NAV_HEADER_LINKS, ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import {
   HiOutlineBars3,
   HiOutlineBookOpen,
@@ -27,10 +27,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav
-          className={cn(classes.nav, isMobileMenuOpen && classes.navOpen)}
-          aria-label="Main"
-        >
+        <nav className={cn(classes.nav, isMobileMenuOpen && classes.navOpen)} aria-label="Main">
           {NAV_HEADER_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className={classes.link}>
               {link.label}

@@ -24,7 +24,7 @@ export default function NewsClient() {
   const endDate = parseDateParam(searchParams.get("end_date"));
   const q = searchParams.get("q") ?? undefined;
   const topicParam = searchParams.get("topic");
-  const topic = getTopicById(topicParam ?? "") ? topicParam ?? undefined : undefined;
+  const topic = getTopicById(topicParam ?? "") ? (topicParam ?? undefined) : undefined;
   const section = topic ? getTopicById(topic)?.section : undefined;
   const page = Math.max(1, Number.parseInt(searchParams.get("page") ?? "1", 10));
 
@@ -80,7 +80,7 @@ export default function NewsClient() {
       const endInput = form.elements.namedItem("end_date") as HTMLInputElement | null;
       const qInput = form.elements.namedItem("q") as HTMLInputElement | null;
       const dateVal = dateInput?.value?.trim() || null;
-      const endVal = dateVal ? (endInput?.value?.trim() || null) : null;
+      const endVal = dateVal ? endInput?.value?.trim() || null : null;
       const qVal = qInput?.value?.trim() || null;
       setParams({
         date: dateVal,
@@ -151,12 +151,7 @@ export default function NewsClient() {
             <label className={classes.searchForm__label} htmlFor="news-date">
               Date
             </label>
-            <Input
-              id="news-date"
-              name="date"
-              type="date"
-              defaultValue={date}
-            />
+            <Input id="news-date" name="date" type="date" defaultValue={date} />
           </div>
           <div className={classes.searchForm__field}>
             <label className={classes.searchForm__label} htmlFor="news-end-date">
@@ -207,9 +202,7 @@ export default function NewsClient() {
       {data && !isLoading && !isError && (
         <>
           <p className={classes.resultsMeta}>
-            {!date && (
-              <span className={classes.resultsMeta__topic}>Latest </span>
-            )}
+            {!date && <span className={classes.resultsMeta__topic}>Latest </span>}
             {topic && (
               <span className={classes.resultsMeta__topic}>
                 {getTopicById(topic)?.label ?? topic}

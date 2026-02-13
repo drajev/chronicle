@@ -46,10 +46,7 @@ export const guardianApi = createApi({
       query: (arg) => {
         const apiKey = getApiKey();
         const apiPage = arg.page ?? 1;
-        const pageSize = Math.min(
-          MAX_PAGE_SIZE,
-          Math.max(1, arg.pageSize ?? DEFAULT_PAGE_SIZE)
-        );
+        const pageSize = Math.min(MAX_PAGE_SIZE, Math.max(1, arg.pageSize ?? DEFAULT_PAGE_SIZE));
         const params: Record<string, string | number | undefined> = {
           "api-key": apiKey,
           "from-date": arg["from-date"],

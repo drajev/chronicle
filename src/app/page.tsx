@@ -17,11 +17,10 @@ const Home = () => {
         <div className={classes.home__heroContent}>
           <header className={classes.home__heroHeader}>
             <h1 className={classes.home__title}>Chronicle</h1>
-            <p className={classes.home__tagline}>
-              Curated news from The Guardian
-            </p>
+            <p className={classes.home__tagline}>Curated news from The Guardian</p>
             <p className={classes.home__subtitle}>
-              Browse featured stories and headlines, or search by topic and date. Clean, fast, and easy to use.
+              Browse featured stories and headlines, or search by topic and date. Clean, fast, and
+              easy to use.
             </p>
             <div className={classes.home__cta}>
               <Link href={ROUTES.news}>

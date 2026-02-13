@@ -32,8 +32,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
-  componentDidCatch(_error: Error, _errorInfo: React.ErrorInfo) {
-  }
+  componentDidCatch(_error: Error, _errorInfo: React.ErrorInfo) {}
 
   handleReset = () => {
     this.setState({

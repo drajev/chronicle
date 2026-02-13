@@ -3,12 +3,12 @@
 import { ArticleCard } from "@/components/news";
 import { Carousel, Link, Skeleton } from "@/components/ui";
 import { useSearchArticlesQuery } from "@/lib/api/guardianApi";
-import { getTopicById } from "@/lib/constants/topics";
 import { ROUTES } from "@/lib/constants/navigation";
+import { getTopicById } from "@/lib/constants/topics";
 import type { GuardianArticle } from "@/lib/schemas/guardianArticle";
-import type { TopicCategory } from "@/types";
 import { getDefaultDateRange } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import type { TopicCategory } from "@/types";
 import { useEffect, useState } from "react";
 import classes from "./LatestNewsCarousel.module.scss";
 
@@ -109,10 +109,7 @@ export default function LatestNewsCarousel({ className, topicId }: LatestNewsCar
           nextLabel="Next article"
           getItemKey={(item) => item.id}
           renderItem={(item) => (
-            <ArticleCard
-              article={item}
-              className={cn(classes.carouselCard, classes.cardLink)}
-            />
+            <ArticleCard article={item} className={cn(classes.carouselCard, classes.cardLink)} />
           )}
         />
       </div>

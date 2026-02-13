@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  guardianArticleSchema,
-  guardianSearchResponseSchema,
-} from "../guardianArticle";
+import { guardianArticleSchema, guardianSearchResponseSchema } from "../guardianArticle";
 
 const validArticle = {
   id: "world/2024/jan/01/sample",

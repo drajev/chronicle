@@ -1,8 +1,6 @@
-import { useEffect, useRef, type RefObject } from "react";
+import { type RefObject, useEffect, useRef } from "react";
 
-function getRootEl(
-  root: RefObject<Element | null> | Element | null | undefined
-): Element | null {
+function getRootEl(root: RefObject<Element | null> | Element | null | undefined): Element | null {
   if (root == null) return null;
   if (typeof root === "object" && "current" in root) return root.current;
   return root as Element;

@@ -1,18 +1,18 @@
 "use client";
 
+import { Link, Skeleton, Spinner } from "@/components/ui";
 import {
   VirtualScroll,
   type VirtualScrollProps,
 } from "@/components/ui/VirtualScroll/VirtualScroll";
-import { Link, Skeleton, Spinner } from "@/components/ui";
 import { useIntersectionObserver } from "@/hooks";
-import { ROUTES } from "@/lib/constants/navigation";
 import { useLazySearchArticlesQuery } from "@/lib/api/guardianApi";
+import { ROUTES } from "@/lib/constants/navigation";
 import type { GuardianArticle } from "@/lib/schemas/guardianArticle";
 import { getDefaultDateRange } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
 import classes from "./HeadlinesList.module.scss";
 
 function HeadlinesVirtualScroll(props: VirtualScrollProps<GuardianArticle>) {
@@ -40,12 +40,7 @@ function HeadlineRow({
 
   return (
     <div ref={measureRef} className={classes.row}>
-      <a
-        href={item.webUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={classes.row__link}
-      >
+      <a href={item.webUrl} target="_blank" rel="noopener noreferrer" className={classes.row__link}>
         <span className={classes.row__title}>{title}</span>
         <span className={classes.row__meta}>
           {date}
@@ -81,13 +76,14 @@ export default function HeadlinesList({ className }: HeadlinesListProps) {
   totalPagesRef.current = totalPages;
   isFetchingRef.current = isFetching;
 
-  const mergePage = useCallback((result: { results: GuardianArticle[]; pages: number; currentPage: number }) => {
-    setItems((prev) =>
-      prev.length === 0 ? result.results : [...prev, ...result.results]
-    );
-    setTotalPages(result.pages);
-    setNextPage(result.currentPage + 1);
-  }, []);
+  const mergePage = useCallback(
+    (result: { results: GuardianArticle[]; pages: number; currentPage: number }) => {
+      setItems((prev) => (prev.length === 0 ? result.results : [...prev, ...result.results]));
+      setTotalPages(result.pages);
+      setNextPage(result.currentPage + 1);
+    },
+    []
+  );
 
   useEffect(() => {
     setMounted(true);

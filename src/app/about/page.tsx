@@ -14,19 +14,17 @@ export default function AboutPage() {
     <article className={classes.about}>
       <header className={classes.about__header}>
         <h1 className={classes.about__title}>About Chronicle</h1>
-        <p className={classes.about__lead}>
-          A focused news experience powered by The Guardian.
-        </p>
+        <p className={classes.about__lead}>A focused news experience powered by The Guardian.</p>
       </header>
 
       <div className={classes.about__content}>
         <section className={classes.about__section}>
           <h2 className={classes.about__sectionTitle}>What it is</h2>
           <p className={classes.about__body}>
-            Chronicle is a portfolio project that aggregates and displays articles from The
-            Guardian Content API. You can browse latest headlines by topic (Business, Sport,
-            Technology, and more), search by date range, and explore featured and trending
-            stories—all in a clean, accessible interface.
+            Chronicle is a portfolio project that aggregates and displays articles from The Guardian
+            Content API. You can browse latest headlines by topic (Business, Sport, Technology, and
+            more), search by date range, and explore featured and trending stories—all in a clean,
+            accessible interface.
           </p>
         </section>
 
@@ -47,9 +45,9 @@ export default function AboutPage() {
             All articles and content are provided by{" "}
             <Link href="https://www.theguardian.com" external className={classes.about__link}>
               The Guardian
-            </Link>
-            {" "}via their open Content API. Chronicle is an independent project and is not
-            affiliated with or endorsed by The Guardian.
+            </Link>{" "}
+            via their open Content API. Chronicle is an independent project and is not affiliated
+            with or endorsed by The Guardian.
           </p>
         </section>
 

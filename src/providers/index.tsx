@@ -6,10 +6,6 @@ import type { ReactNode } from "react";
 import { useRef } from "react";
 import { Provider } from "react-redux";
 
-/**
- * Single app-level providers wrapper. Composes Redux and Theme.
- * Use as the one wrapper in root layout. initialTheme from server (cookie) keeps hydration in sync.
- */
 const AppProviders = ({
   children,
   initialTheme,

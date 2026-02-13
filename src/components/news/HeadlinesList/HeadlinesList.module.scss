@@ -1,0 +1,176 @@
+@use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/mixins.scss" as *;
+
+.section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-2xl $spacing-l;
+  text-align: left;
+
+  @media (max-width: $screen-md-max) {
+    padding: $spacing-xl $spacing-m;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-m;
+  text-align: left;
+}
+
+.title {
+  @include h2;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: left;
+}
+
+.viewAll {
+  @include body2;
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.skeletonLink {
+  @include body2;
+  visibility: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.scrollWrapper {
+  height: 360px;
+  border: 1px solid var(--border-secondary);
+  border-radius: $radius-component;
+  background-color: var(--surface-primary);
+  overflow: hidden;
+
+  @media (max-width: $screen-md-max) {
+    height: 320px;
+  }
+}
+
+.virtualScroll {
+  height: 100%;
+}
+
+.row {
+  padding: 0 $spacing-m;
+  border-bottom: 1px solid var(--border-tertiary, var(--border-secondary));
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.row__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 52px;
+  padding: $spacing-s 0;
+  text-decoration: none;
+  color: inherit;
+  text-align: left;
+  transition: background-color 0.15s ease, border-left-color 0.15s ease, padding-left 0.15s ease;
+  border-left: 3px solid transparent;
+  margin-left: -$spacing-m;
+  padding-left: $spacing-m;
+
+  &:hover {
+    background-color: var(--surface-hover, rgba(0, 0, 0, 0.04));
+    border-left-color: var(--accent-primary);
+  }
+}
+
+.row__title {
+  @include body2;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: $line-height-tight;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+  transition: color 0.15s ease;
+
+  .row__link:hover & {
+    color: var(--accent-primary);
+  }
+}
+
+.row__meta {
+  @include body3;
+  color: var(--text-tertiary, var(--text-secondary));
+  margin-top: $spacing-xs;
+  text-align: left;
+}
+
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-s;
+  height: 360px;
+  border: 1px solid var(--border-secondary);
+  border-radius: $radius-component;
+  padding: $spacing-m;
+}
+
+.skeletonRow {
+  height: 24px;
+  border-radius: $radius-s;
+}
+
+.empty {
+  @include body2;
+  color: var(--text-secondary);
+  text-align: left;
+  padding: $spacing-2xl 0;
+}
+
+.link {
+  color: var(--text-accent);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.sentinel {
+  width: 100%;
+  pointer-events: none;
+}
+
+.loadingSlot {
+  min-height: 40px;
+  margin-top: $spacing-m;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingMore {
+  display: flex;
+  align-items: center;
+  gap: $spacing-s;
+  @include body3;
+  color: var(--text-secondary);
+}

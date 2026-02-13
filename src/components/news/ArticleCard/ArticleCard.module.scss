@@ -22,6 +22,11 @@
   color: var(--text-primary);
   margin: 0 0 $spacing-xs;
   line-height: $line-height-tight;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .meta {
@@ -35,4 +40,9 @@
   color: var(--text-secondary);
   margin: 0;
   line-height: $line-height-relaxed;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

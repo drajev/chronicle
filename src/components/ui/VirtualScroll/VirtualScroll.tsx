@@ -25,6 +25,8 @@ export interface VirtualScrollProps<T> {
   getItemKey?: (index: number, item: T) => string | number;
   className?: string;
   contentClassName?: string;
+  footer?: ReactNode;
+  footerHeight?: number;
   scrollAreaRef?: React.RefObject<HTMLDivElement | null>;
   ref?: React.Ref<VirtualScrollRef>;
 }
@@ -37,6 +39,8 @@ const VirtualScrollInner = <T,>({
   getItemKey,
   className,
   contentClassName,
+  footer,
+  footerHeight = 0,
   scrollAreaRef: scrollAreaRefProp,
   ref,
 }: VirtualScrollProps<T>) => {
@@ -51,6 +55,8 @@ const VirtualScrollInner = <T,>({
     overscan,
     getItemKey: getItemKey ? (index) => String(getItemKey(index, items[index] as T)) : undefined,
   });
+
+  const totalHeight = virtualizer.getTotalSize() + footerHeight;
 
   useImperativeHandle(
     ref,
@@ -85,7 +91,7 @@ const VirtualScrollInner = <T,>({
   return (
     <ScrollArea ref={scrollAreaRef} className={cn(classes.container, className)}>
       <div className={cn(classes.track, contentClassName)}>
-        <div className={classes.sizer} style={{ height: `${virtualizer.getTotalSize()}px` }}>
+        <div className={classes.sizer} style={{ height: `${totalHeight}px` }}>
           {virtualizer.getVirtualItems().map((virtualRow) => (
             <div
               key={virtualRow.key}
@@ -100,6 +106,20 @@ const VirtualScrollInner = <T,>({
               })}
             </div>
           ))}
+          {footer && (
+            <div
+              className={classes.footer}
+              style={{
+                position: "absolute",
+                top: virtualizer.getTotalSize(),
+                left: 0,
+                right: 0,
+                height: footerHeight,
+              }}
+            >
+              {footer}
+            </div>
+          )}
         </div>
       </div>
       <ScrollBar orientation="vertical" />

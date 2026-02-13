@@ -1,5 +1,5 @@
+import { Link } from "@/components/ui";
 import { NAV_FOOTER_LINKS, ROUTES } from "@/lib/constants";
-import Link from "next/link";
 import { HiOutlineBookOpen } from "react-icons/hi2";
 import classes from "./Footer.module.scss";
 

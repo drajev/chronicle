@@ -1,11 +1,6 @@
 import { z } from "zod";
 
-/**
- * Guardian Content API response shapes.
- * @see https://open-platform.theguardian.com/documentation/
- */
-
-/** Optional fields returned when requested via show-fields. */
+/** @see https://open-platform.theguardian.com/documentation/ */
 export const guardianArticleFieldsSchema = z
   .object({
     headline: z.string().optional(),
@@ -18,7 +13,6 @@ export const guardianArticleFieldsSchema = z
   .passthrough()
   .optional();
 
-/** Single article from Guardian Content API search. */
 export const guardianArticleSchema = z.object({
   id: z.string(),
   webTitle: z.string(),
@@ -31,7 +25,6 @@ export const guardianArticleSchema = z.object({
   fields: guardianArticleFieldsSchema,
 });
 
-/** Search response meta. */
 export const guardianSearchResponseMetaSchema = z.object({
   status: z.string(),
   userTier: z.string().optional(),
@@ -43,7 +36,6 @@ export const guardianSearchResponseMetaSchema = z.object({
   orderBy: z.string().optional(),
 });
 
-/** Full Guardian Content API search response. */
 export const guardianSearchResponseSchema = z.object({
   response: z.object({
     status: z.string(),

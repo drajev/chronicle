@@ -11,7 +11,6 @@ export interface CarouselProps<T> {
   renderItem: (item: T, index: number) => ReactNode;
   itemWidth: number;
   getItemKey?: (item: T, index: number) => string | number;
-  /** Accessible label for the carousel region (e.g. "Featured items"). */
   ariaLabel?: string;
   visibleCount?: number;
   gap?: number;
@@ -25,10 +24,6 @@ export interface CarouselProps<T> {
 const DEFAULT_GAP = 16;
 const DEFAULT_TRANSITION_MS = 300;
 
-/**
- * Infinite horizontal carousel. Prev/next buttons below; seamless loop.
- * Uses three copies of items so there are never empty slots at the ends.
- */
 const Carousel = <T,>({
   items,
   renderItem,

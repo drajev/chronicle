@@ -33,7 +33,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(_error: Error, _errorInfo: React.ErrorInfo) {
-    // TODO: send to error reporting service
   }
 
   handleReset = () => {

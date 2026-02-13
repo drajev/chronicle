@@ -2,14 +2,8 @@
 @use "@/assets/scss/mixins.scss" as *;
 @use "@/assets/scss/utils.scss" as *;
 
-// --------------------------------------------------------------
-// Theme: 4 base colors per mode. All semantic vars derive from these.
-// --------------------------------------------------------------
-
-// Default (light) - applied to :root for SSR and no-JS
 :root,
 [data-theme="light"] {
-  // Palette (4 bases)
   --theme-bg: #{$theme-light-bg};
   --theme-surface: #{$theme-light-surface};
   --theme-muted: #{$theme-light-muted};
@@ -17,17 +11,15 @@
   --theme-accent-hover: #{$theme-light-accent-hover};
   --theme-accent-muted: #{$theme-light-accent-muted};
 
-  // Gradients
   --gradient-subtle: #{$theme-light-gradient-subtle};
+  --gradient-hero: #{$theme-light-gradient-hero};
   --gradient-accent: #{$theme-light-gradient-accent};
 
-  // Shadows
   --shadow-sm: #{$theme-light-shadow-sm};
   --shadow-md: #{$theme-light-shadow-md};
   --shadow-lg: #{$theme-light-shadow-lg};
   --shadow-xl: #{$theme-light-shadow-xl};
 
-  // Semantic (derived from palette)
   --text-primary: #2c2825;
   --text-secondary: #5c5650;
   --text-tertiary: #8a837b;
@@ -53,7 +45,6 @@
   --error-muted: #{rgba(253, 43, 94, 0.12)};
 }
 
-// Dark theme
 [data-theme="dark"] {
   --theme-bg: #{$theme-dark-bg};
   --theme-surface: #{$theme-dark-surface};
@@ -63,6 +54,7 @@
   --theme-accent-muted: #{$theme-dark-accent-muted};
 
   --gradient-subtle: #{$theme-dark-gradient-subtle};
+  --gradient-hero: #{$theme-dark-gradient-hero};
   --gradient-accent: #{$theme-dark-gradient-accent};
 
   --shadow-sm: #{$theme-dark-shadow-sm};
@@ -95,7 +87,6 @@
   --error-muted: #{rgba(253, 43, 94, 0.12)};
 }
 
-// Design tokens (theme-agnostic)
 :root {
   --spacing-xs: #{$spacing-xs};
   --spacing-s: #{$spacing-s};
@@ -106,9 +97,6 @@
   --focus-ring-offset: #{$focus-ring-offset};
 }
 
-// --------------------------------------------------------------
-// Base Styles
-// --------------------------------------------------------------
 html {
   height: 100%;
   max-width: 100vw;

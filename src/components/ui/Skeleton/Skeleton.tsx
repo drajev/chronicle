@@ -10,13 +10,7 @@ export type SkeletonVariant =
   | "list-line";
 
 export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Variant: layout (text, block) or component-matching (card, button-sm, button-icon-sm, list-line).
-   */
   variant?: SkeletonVariant;
-  /**
-   * Typography for variant="text" (line height).
-   */
   typography?:
     | "body1"
     | "body2"

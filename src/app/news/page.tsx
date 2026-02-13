@@ -1,11 +1,12 @@
-import Spinner from "@/components/ui/Spinner/Spinner";
+import { Spinner } from "@/components/ui";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import NewsClient from "./NewsClient";
 
 export const metadata: Metadata = {
   title: "News | Chronicle",
-  description: "Search The Guardian articles by date.",
+  description:
+    "Search and filter The Guardian articles by date and topic (business, sport, technology, and more).",
 };
 
 function NewsFallback() {

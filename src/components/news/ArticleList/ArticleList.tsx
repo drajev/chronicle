@@ -1,6 +1,6 @@
 "use client";
 
-import { ArticleCard } from "@/components/news/ArticleCard";
+import { ArticleCard } from "@/components/news";
 import type { GuardianArticle } from "@/lib/schemas/guardianArticle";
 import classes from "./ArticleList.module.scss";
 

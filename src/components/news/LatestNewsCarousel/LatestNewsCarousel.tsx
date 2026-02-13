@@ -1,36 +1,30 @@
 "use client";
 
-import { Card, Carousel, Skeleton } from "@/components/ui";
+import { ArticleCard } from "@/components/news";
+import { Carousel, Link, Skeleton } from "@/components/ui";
 import { useSearchArticlesQuery } from "@/lib/api/guardianApi";
+import { getTopicById } from "@/lib/constants/topics";
 import { ROUTES } from "@/lib/constants/navigation";
 import type { GuardianArticle } from "@/lib/schemas/guardianArticle";
+import type { TopicCategory } from "@/types";
+import { getDefaultDateRange } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { format, subDays } from "date-fns";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import classes from "./LatestNewsCarousel.module.scss";
 
 const CAROUSEL_ITEM_WIDTH = 280;
 const CAROUSEL_GAP = 16;
-const SKELETON_SLOT_KEYS = ["a", "b", "c", "d", "e"] as const;
-
-function getDateRange(): { "from-date": string; "to-date": string } {
-  const today = new Date();
-  const from = subDays(today, 7);
-  return {
-    "from-date": format(from, "yyyy-MM-dd"),
-    "to-date": format(today, "yyyy-MM-dd"),
-  };
-}
+const SKELETON_SLOT_KEYS = ["a", "b", "c"] as const;
 
 interface LatestNewsCarouselProps {
-  /** Optional class for the section (e.g. transparent background when embedded in hero). */
   className?: string;
+  topicId?: TopicCategory;
 }
 
-export default function LatestNewsCarousel({ className }: LatestNewsCarouselProps) {
+export default function LatestNewsCarousel({ className, topicId }: LatestNewsCarouselProps) {
   const [mounted, setMounted] = useState(false);
-  const { "from-date": fromDate, "to-date": toDate } = getDateRange();
+  const { "from-date": fromDate, "to-date": toDate } = getDefaultDateRange();
+  const section = topicId ? getTopicById(topicId)?.section : undefined;
 
   useEffect(() => {
     setMounted(true);
@@ -42,17 +36,21 @@ export default function LatestNewsCarousel({ className }: LatestNewsCarouselProp
       "to-date": toDate,
       "order-by": "newest",
       page: 1,
+      ...(section && { section }),
     },
     { skip: !mounted }
   );
+
+  const sectionLabel = topicId ? getTopicById(topicId)?.label : null;
+  const title = sectionLabel ? `Latest in ${sectionLabel}` : "Featured";
 
   const results = data?.results ?? [];
 
   if (!mounted || isLoading) {
     return (
-      <section className={cn(classes.section, className)} aria-label="Latest news loading">
+      <section className={cn(classes.section, className)} aria-label={`${title} loading`}>
         <div className={classes.sectionHeader}>
-          <h2 className={classes.sectionTitle}>Latest news</h2>
+          <h2 className={classes.sectionTitle}>{title}</h2>
           <span className={classes.skeletonViewAllPlaceholder} aria-hidden>
             View all
           </span>
@@ -80,7 +78,7 @@ export default function LatestNewsCarousel({ className }: LatestNewsCarouselProp
     return (
       <section className={cn(classes.section, className)}>
         <div className={classes.sectionHeader}>
-          <h2 className={classes.sectionTitle}>Latest news</h2>
+          <h2 className={classes.sectionTitle}>{title}</h2>
         </div>
         <p className={classes.empty}>
           No recent articles right now.{" "}
@@ -93,9 +91,9 @@ export default function LatestNewsCarousel({ className }: LatestNewsCarouselProp
   }
 
   return (
-    <section className={cn(classes.section, className)} aria-label="Latest news">
+    <section className={cn(classes.section, className)} aria-label={title}>
       <div className={classes.sectionHeader}>
-        <h2 className={classes.sectionTitle}>Latest news</h2>
+        <h2 className={classes.sectionTitle}>{title}</h2>
         <Link href={ROUTES.news} className={classes.viewAll}>
           View all
         </Link>
@@ -105,28 +103,16 @@ export default function LatestNewsCarousel({ className }: LatestNewsCarouselProp
           items={results}
           itemWidth={CAROUSEL_ITEM_WIDTH}
           gap={CAROUSEL_GAP}
+          viewportClassName={classes.carouselViewport}
           ariaLabel="Latest Guardian articles"
           prevLabel="Previous article"
           nextLabel="Next article"
           getItemKey={(item) => item.id}
           renderItem={(item) => (
-            <Card variant="outlined" padding="md" className={classes.carouselCard}>
-              <a
-                href={item.webUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classes.cardLink}
-              >
-                <h3 className={classes.cardTitle}>{item.fields?.headline ?? item.webTitle}</h3>
-                <p className={classes.cardMeta}>
-                  {format(new Date(item.webPublicationDate), "MMM d, yyyy")}
-                  {item.sectionName ? ` · ${item.sectionName}` : ""}
-                </p>
-                {item.fields?.trailText && (
-                  <p className={classes.cardSnippet}>{item.fields.trailText}</p>
-                )}
-              </a>
-            </Card>
+            <ArticleCard
+              article={item}
+              className={cn(classes.carouselCard, classes.cardLink)}
+            />
           )}
         />
       </div>

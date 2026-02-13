@@ -26,7 +26,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Chronicle",
-  description: "A simple place for your notes and thoughts",
+  description:
+    "Curated news from The Guardian. Browse by topic, search by date, and stay informed with a clean, focused reader.",
 };
 
 export default async function RootLayout({

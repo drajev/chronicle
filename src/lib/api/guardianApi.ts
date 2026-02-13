@@ -3,21 +3,16 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const GUARDIAN_BASE = "https://content.guardianapis.com";
 
-/** Query params for Guardian Content API search. Dates in YYYY-MM-DD. */
 export interface ArticleSearchParams {
-  /** Optional text query. */
   q?: string;
-  /** Start date inclusive (YYYY-MM-DD). */
+  section?: string;
   "from-date"?: string;
-  /** End date inclusive (YYYY-MM-DD). For exact date, set both to same value. */
   "to-date"?: string;
-  /** Page (1-based); same as Guardian API. Omit or 1 for first page. */
   page?: number;
-  /** Order: newest | oldest. */
+  pageSize?: number;
   "order-by"?: "newest" | "oldest";
 }
 
-/** Normalized result from article search (after Zod parse). */
 export interface ArticleSearchResult {
   results: GuardianArticle[];
   total: number;
@@ -25,7 +20,8 @@ export interface ArticleSearchResult {
   currentPage: number;
 }
 
-const PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE = 10;
+const MAX_PAGE_SIZE = 50;
 
 function getApiKey(): string {
   const key =
@@ -50,15 +46,20 @@ export const guardianApi = createApi({
       query: (arg) => {
         const apiKey = getApiKey();
         const apiPage = arg.page ?? 1;
+        const pageSize = Math.min(
+          MAX_PAGE_SIZE,
+          Math.max(1, arg.pageSize ?? DEFAULT_PAGE_SIZE)
+        );
         const params: Record<string, string | number | undefined> = {
           "api-key": apiKey,
           "from-date": arg["from-date"],
           "to-date": arg["to-date"],
           "order-by": arg["order-by"] ?? "newest",
-          "page-size": PAGE_SIZE,
+          "page-size": pageSize,
           page: apiPage,
           "show-fields": "headline,byline,trailText,shortUrl",
         };
+        if (arg.section?.trim()) params.section = arg.section.trim();
         if (arg.q?.trim()) params.q = arg.q.trim();
         const filtered: Record<string, string | number> = {};
         for (const [k, v] of Object.entries(params)) {
@@ -82,7 +83,7 @@ export const guardianApi = createApi({
       providesTags: (_result, _err, arg) => [
         {
           type: "ArticleSearch",
-          id: `${arg["from-date"] ?? ""}-${arg["to-date"] ?? ""}-${arg.q ?? ""}-${arg.page ?? 1}`,
+          id: `${arg.section ?? ""}-${arg["from-date"] ?? ""}-${arg["to-date"] ?? ""}-${arg.q ?? ""}-${arg.page ?? 1}-${arg.pageSize ?? DEFAULT_PAGE_SIZE}`,
         },
       ],
     }),

@@ -1,7 +1,7 @@
 "use client";
 
 import type { GuardianArticle } from "@/lib/schemas/guardianArticle";
-import { cn } from "@/lib/utils";
+import { cn, stripHtml } from "@/lib/utils";
 import { format } from "date-fns";
 import classes from "./ArticleCard.module.scss";
 
@@ -14,7 +14,8 @@ const ArticleCard = ({ article, className }: ArticleCardProps) => {
   const date = new Date(article.webPublicationDate);
   const title = article.fields?.headline ?? article.webTitle;
   const byline = article.fields?.byline ?? null;
-  const snippet = article.fields?.trailText ?? null;
+  const rawSnippet = article.fields?.trailText ?? null;
+  const snippet = rawSnippet ? stripHtml(rawSnippet) : null;
 
   return (
     <a
